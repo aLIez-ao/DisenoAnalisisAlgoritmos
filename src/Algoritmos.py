@@ -1,6 +1,10 @@
 import random
 from colorama import Fore, Style
 
+# Dado un arreglo de n de números enteros y un entero k.
+# Determinar si en el arreglo existe un par que dé como suma k.
+# A[x]+A[x']=k
+
 
 def existe_par_suma_k(arreglo, k):
     """

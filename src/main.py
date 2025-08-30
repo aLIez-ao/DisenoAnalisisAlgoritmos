@@ -1,6 +1,6 @@
 import random
 from colorama import Fore, Style, init
-import algoritmos
+from algoritmos import *
 
 # Inicializar colorama para Windows
 init(autoreset=True)
@@ -18,8 +18,8 @@ if __name__ == "__main__":
     print(f"{'='*40}\n")
 
     # Ejecutar algoritmos
-    existe = algoritmos.existe_par_suma_k(arreglo, k)
-    existe_optimizado = algoritmos.existe_par_suma_k_optimizado(arreglo, k)
+    existe = existe_par_suma_k(arreglo, k)
+    existe_optimizado = existe_par_suma_k_optimizado(arreglo, k)
 
     # Resultado final
     print(Style.BRIGHT + "\n" + "=" * 40)
