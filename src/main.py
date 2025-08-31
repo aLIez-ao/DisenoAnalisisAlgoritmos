@@ -2,29 +2,41 @@ import random
 from colorama import Fore, Style, init
 from algoritmos import *
 
-# Inicializar colorama para Windows
 init(autoreset=True)
 
 if __name__ == "__main__":
-    # Generamos un arreglo ordenado de tamaño n
-    arreglo = list(range(100))
 
-    # Elegimos dos índices aleatorios distintos para garantizar que el par exista
-    i, j = random.sample(range(len(arreglo)), 2)
-    k = arreglo[i] + arreglo[j]
+    # Arreglo de números del 0 a n-1
+    arreglo = list(range(random.randint(0, 100)))  
 
-    print(Style.BRIGHT + f"\n{'='*40}")
-    print(Style.BRIGHT + f" Buscando si existe un par que sume {k} ")
-    print(f"{'='*40}\n")
 
-    # Ejecutar algoritmos
-    existe = existe_par_suma_k(arreglo, k)
-    existe_optimizado = existe_par_suma_k_optimizado(arreglo, k)
+    # -------------------------------
+    # Configuración: elegir algoritmo
+    # -------------------------------
+    algoritmo_ejecutar = "busqueda_lineal"
 
-    # Resultado final
-    print(Style.BRIGHT + "\n" + "=" * 40)
-    if existe or existe_optimizado:
-        print(Fore.GREEN + Style.BRIGHT + f"✅ Existe al menos un par que suma {k}.")
-    else:
-        print(Fore.RED + Style.BRIGHT + f"❌ No existe ningún par que sume {k}.")
-    print("=" * 40 + "\n")
+
+    # Diccionario con todas las funciones disponibles
+    funciones = {
+        "par_suma_k": lambda: (
+            lambda i, j: (
+                print(Style.BRIGHT + f"\n{'='*40}"),
+                print(Style.BRIGHT+ f" Buscando si existe un par que sume {arreglo[i]+arreglo[j]} "),
+                print(f"{'='*40}\n"),
+                existe_par_suma_k(arreglo, arreglo[i] + arreglo[j]),
+                existe_par_suma_k_optimizado(arreglo, arreglo[i] + arreglo[j]),
+            )) (*random.sample(range(len(arreglo)), 2)),
+        
+        "busqueda_lineal": lambda: (
+            lambda valor_buscar, resultado: (
+                print(Style.BRIGHT + f"\nBusqueda lineal del valor {valor_buscar}:"),
+                print(Fore.GREEN + f"✅ Valor encontrado en índice {resultado[0]}"
+                    if resultado[0] != -1 else Fore.RED + f"❌ Valor no encontrado."),
+                print(f"Número de comparaciones realizadas: {resultado[1]}\n"),
+            )) (valor := random.choice(arreglo), busqueda_lineal(arreglo, valor)),
+    }
+
+
+    # Ejecutar el algoritmo elegido
+    if algoritmo_ejecutar in funciones: funciones[algoritmo_ejecutar]()
+    else: print(Fore.RED + f"Algoritmo '{algoritmo_ejecutar}' no existe en el compendio.")
