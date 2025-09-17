@@ -1,1 +1,0 @@
-from algoritmos import algoritmoss

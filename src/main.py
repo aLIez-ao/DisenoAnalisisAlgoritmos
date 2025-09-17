@@ -1,42 +1,33 @@
 import random
-from colorama import Fore, Style, init
-from algoritmos import *
+from ejecutar_funcion import *
 
-init(autoreset=True)
 
 if __name__ == "__main__":
 
-    # Arreglo de números del 0 a n-1
-    arreglo = list(range(random.randint(0, 100)))  
-
+    # Datos de ejemplo
+    n = random.randint(1, 100)
+    arreglo = list(range(1, n + 1))
+    lista = list(range(1, n + 1))
+    pila = list(range(1, n + 1))
+    cadena = "anita lava la tina"
 
     # -------------------------------
-    # Configuración: elegir algoritmo
+    # Diccionario de funciones
     # -------------------------------
-    algoritmo_ejecutar = "busqueda_lineal"
-
-
-    # Diccionario con todas las funciones disponibles
     funciones = {
-        "par_suma_k": lambda: (
-            lambda i, j: (
-                print(Style.BRIGHT + f"\n{'='*40}"),
-                print(Style.BRIGHT+ f" Buscando si existe un par que sume {arreglo[i]+arreglo[j]} "),
-                print(f"{'='*40}\n"),
-                existe_par_suma_k(arreglo, arreglo[i] + arreglo[j]),
-                existe_par_suma_k_optimizado(arreglo, arreglo[i] + arreglo[j]),
-            )) (*random.sample(range(len(arreglo)), 2)),
+        # Algoritmos optimizados
+        "par_suma_k": lambda: ejecutar_par_suma_k(arreglo),
+        "busqueda_lineal": lambda: ejecutar_busqueda_lineal(arreglo, random.choice(arreglo)),
         
-        "busqueda_lineal": lambda: (
-            lambda valor_buscar, resultado: (
-                print(Style.BRIGHT + f"\nBusqueda lineal del valor {valor_buscar}:"),
-                print(Fore.GREEN + f"✅ Valor encontrado en índice {resultado[0]}"
-                    if resultado[0] != -1 else Fore.RED + f"❌ Valor no encontrado."),
-                print(f"Número de comparaciones realizadas: {resultado[1]}\n"),
-            )) (valor := random.choice(arreglo), busqueda_lineal(arreglo, valor)),
+        # Algoritmos recursivos
+        "suma_recursiva": lambda: ejecutar_suma_recursiva(lista),
+        "contar_digitos": lambda: ejecutar_contar_digitos(n),
+        "eliminar_medio": lambda: ejecutar_eliminar_medio(pila),
+        "es_palindromo": lambda: ejecutar_es_palindromo(cadena),
     }
 
-
-    # Ejecutar el algoritmo elegido
-    if algoritmo_ejecutar in funciones: funciones[algoritmo_ejecutar]()
-    else: print(Fore.RED + f"Algoritmo '{algoritmo_ejecutar}' no existe en el compendio.")
+    # -------------------------------
+    # Ejecutar algoritmo elegido
+    # -------------------------------
+    algoritmo_ejecutar = "contar_digitos"
+    funciones[algoritmo_ejecutar]()
