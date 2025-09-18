@@ -37,3 +37,12 @@ def es_palindromo(cadena):
     return es_palindromo(cadena[1:-1])
 
 
+# Sucecsión de Fibonacci con recursividad
+def fibonacci(n):
+    """Devuelve el n-ésimo número de Fibonacci usando recursión."""
+    if n <= 0:return "El número debe ser positivo"
+    elif n == 1:return 0
+    elif n == 2: return 1
+    else: return fibonacci(n-1) + fibonacci(n-2)
+
+
