@@ -1,3 +1,9 @@
+"""
+El módulo contiene varias funciones para el análisis de la complejidad algorítmica, incluyendo ejemplos de bucles simples, bucles anidados, y operaciones sobre listas. Cada función está acompañada de comentarios detallados sobre su complejidad temporal T(n) y su notación Big O.
+Funciones incluidas:
+Cada función incluye un análisis detallado de su complejidad temporal, útil para fines educativos en el estudio de diseño y análisis de algoritmos.
+"""
+
 # Función 1: Suma de números naturales hasta 'tope'
 def suma_naturales(tope):
     suma = 0                     # T(n) = 1
@@ -8,6 +14,8 @@ def suma_naturales(tope):
                                                     # T(n) = 2*(tope + 1) + 2 ≈ 
                                                     # T(n) ≈ 2*tope + 4
 
+
+# ____________________________________________________________________________
 # Función 2: Tres bucles anidados sobre la misma lista
 def ejercicio3(lista):
     conteo = 0                           # T(n) = 1
@@ -21,6 +29,7 @@ def ejercicio3(lista):
                                                             # T(n) = 2*n^3 + 2
 
 
+# ____________________________________________________________________________
 # Función 3: Suma de lista + bucle anidado
 def ejercicio4(lista):
     conteo = 0                    # T(n) = 1
@@ -39,6 +48,7 @@ def ejercicio4(lista):
                                                      # T(n) = 2*n^2 + 2*n + 3
 
 
+# ____________________________________________________________________________
 # Función 4: Bucle anidado entre dos listas diferentes
 def ejercicio4_1(lista, lista2):
     conteo = 0                # T(n) = 1
@@ -52,7 +62,6 @@ def ejercicio4_1(lista, lista2):
                                                  
 
 # Tarea: Analisis de algoritmos. Deteminar el T(n) de las siguientes funciones
-
 # ____________________________________________________________________________
 
 def tarea_uno(n):

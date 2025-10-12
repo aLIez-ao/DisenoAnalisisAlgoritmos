@@ -1,3 +1,8 @@
+"""
+Este módulo contiene implementaciones de algoritmos recursivos clásicos en Python.
+Cada función está diseñada para ilustrar el uso de la recursividad en la resolución de problemas comunes.
+"""
+
 # -------------------------------
 # Algoritmos de recursividad
 # -------------------------------

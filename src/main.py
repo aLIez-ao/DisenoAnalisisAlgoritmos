@@ -1,14 +1,15 @@
 import random
 from ejecutar_funcion import *
+from generador_datos import *
 
 
 if __name__ == "__main__":
 
     # Datos de ejemplo
     n = random.randint(1, 100)
-    arreglo = list(range(1, n + 1))
-    lista = list(range(1, n + 1))
-    pila = list(range(1, n + 1))
+    arreglo = generar_arreglo(20)
+    lista = generar_lista(n)
+    pila = generar_pila(n)
     cadena = "anita lava la tina"
 
     # -------------------------------
@@ -24,10 +25,13 @@ if __name__ == "__main__":
         "contar_digitos": lambda: ejecutar_contar_digitos(n),
         "eliminar_medio": lambda: ejecutar_eliminar_medio(pila),
         "es_palindromo": lambda: ejecutar_es_palindromo(cadena),
+        
+        # Algoritmos de fuerza bruta
+        "maximo_producto": lambda: ejecutar_maximo_producto(arreglo),
     }
 
     # -------------------------------
     # Ejecutar algoritmo elegido
     # -------------------------------
-    algoritmo_ejecutar = "contar_digitos"
+    algoritmo_ejecutar = "maximo_producto"
     funciones[algoritmo_ejecutar]()

@@ -1,5 +1,10 @@
-from colorama import Fore, Style
+"""
+Este módulo contiene implementaciones de algoritmos clásicos y optimizados para la resolución de problemas comunes en el análisis y diseño de algoritmos.
+Requiere:
+- colorama para la salida colorida en consola.
+"""
 
+from colorama import Fore, Style
 
 # -------------------------------
 # Algoritmos optimizados
