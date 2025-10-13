@@ -42,12 +42,14 @@ def cifrar_cesar(texto: str, alfabeto: str, desplazamiento: int) -> str:
 
 def descifrar_cesar_fuerza_bruta(texto_cifrado: str, alfabeto: str):
     """
-    Descifra un texto cifrado con el método César por fuerza bruta.
-    
+    Descifra un texto cifrado con el método César por fuerza bruta,
+    respetando mayúsculas y minúsculas.
+
     Parámetros:
         texto_cifrado (str): Texto cifrado.
-        alfabeto (str): Cadena que representa el alfabeto a usar, por ejemplo "abcdefghijklmnñopqrstuvwxyz ,."
-    
+        alfabeto (str): Cadena que representa el alfabeto a usar,
+                        por ejemplo "abcdefghijklmnñopqrstuvwxyz ,."
+
     Retorna:
         list[tuple[int, str]]: Lista de tuplas (desplazamiento, texto_descifrado)
     """
@@ -58,14 +60,23 @@ def descifrar_cesar_fuerza_bruta(texto_cifrado: str, alfabeto: str):
     for desplazamiento in range(longitud_alfabeto):
         texto_descifrado = ""
         for caracter in texto_cifrado:
-            if caracter in posiciones_caracteres:
-                nueva_posicion = (posiciones_caracteres[caracter] - desplazamiento) % longitud_alfabeto
-                texto_descifrado += alfabeto[nueva_posicion]
+            # Convertimos temporalmente a minúscula para buscar en el alfabeto
+            c = caracter.lower()
+            if c in posiciones_caracteres:
+                # Calculamos la posición original
+                nueva_posicion = (posiciones_caracteres[c] - desplazamiento) % longitud_alfabeto
+                nuevo_caracter = alfabeto[nueva_posicion]
+                # Conservamos mayúscula si el original era mayúscula
+                if caracter.isupper():
+                    nuevo_caracter = nuevo_caracter.upper()
+                texto_descifrado += nuevo_caracter
             else:
+                # Caracteres que no están en el alfabeto se conservan
                 texto_descifrado += caracter
         resultados.append((desplazamiento, texto_descifrado))
     
     return resultados
+
 
 
 # Dado un arreglo de enteros encuentra dos números en el arreglo cuyo producto sea el más alto empleando fuerza bruta.

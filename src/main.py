@@ -1,6 +1,6 @@
 import random
-from lib import *
-
+from lib.ejecutar_funcion import *
+from lib import lector_txt
 
 
 if __name__ == "__main__":
@@ -9,9 +9,10 @@ if __name__ == "__main__":
     arreglo = generar_arreglo(20)
     lista = generar_lista(n)
     pila = generar_pila(n)
-    cadena = "anita lava la tina"
-    texto = "Hola Mundo"
-    
+    texto = "anita lava la tina"
+    ruta = lector_txt.leer_txt(r"resources\texto.txt")
+    # ruta = r"resources\hola_mundo.txt"
+
     ESP = "abcdefghijklmnñopqrstuvwxyz ,."
     ING = "abcdefghijklmnopqrstuvwxyz ,."
 
@@ -29,12 +30,13 @@ if __name__ == "__main__":
         "suma_recursiva": lambda: ejecutar_suma_recursiva(lista),
         "contar_digitos": lambda: ejecutar_contar_digitos(n),
         "eliminar_medio": lambda: ejecutar_eliminar_medio(pila),
-        "es_palindromo": lambda: ejecutar_es_palindromo(cadena),
+        "es_palindromo": lambda: ejecutar_es_palindromo(texto),
         
         # Algoritmos de fuerza bruta
         "maximo_producto": lambda: ejecutar_maximo_producto(arreglo),
-        "cifrar_cesar": lambda: ejecutar_cifrar_cesar(texto, n, ESP),
-        "descifrar_cesar": lambda: ejecutar_descifrar_cesar(texto, ESP),
+        "cifrar_cesar": lambda: ejecutar_cifrar_cesar(ruta, n, ESP),
+        "descifrar_cesar": lambda: ejecutar_descifrar_cesar(ruta, ESP),
+        "ejecutar_cifrar_cesar_texto": lambda: ejecutar_cifrar_decifrar_cesar(ruta, 3, ESP),
 
     }
 
@@ -42,5 +44,5 @@ if __name__ == "__main__":
     # -------------------------------
     # Ejecutar algoritmo elegido
     # -------------------------------
-    algoritmo_ejecutar = "cifrar_cesar"
+    algoritmo_ejecutar = "descifrar_cesar"
     funciones[algoritmo_ejecutar]()

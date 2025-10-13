@@ -13,6 +13,8 @@ import random
 from typing import List, Tuple
 from colorama import Fore, Style
 from algoritmos import *
+from lib import *
+from .lector_txt import leer_txt
 
 
 # -------------------------------
@@ -242,3 +244,39 @@ def ejecutar_descifrar_cesar(texto_encriptado: str, alfabeto: str):
         print(f"{Fore.WHITE}Desplazamiento {desplazamiento:2d}:{Fore.RESET} {texto}")
 
     print(Fore.MAGENTA + "\n──────────────────────────────────────────────\n" + Style.RESET_ALL)
+
+
+def ejecutar_cifrar_decifrar_cesar(ruta: str, desplazamiento: int, alfabeto: str):
+    """
+    Ejecuta el cifrado César sobre el contenido de un archivo .txt y luego
+    realiza un descifrado por fuerza bruta mostrando todos los posibles
+    desplazamientos.
+    La función imprime en consola:
+        - El texto original leído del archivo.
+        - El desplazamiento utilizado para el cifrado.
+        - El texto cifrado.
+        - Todos los posibles descifrados por fuerza bruta, resaltando
+          los que podrían ser legibles.
+    Args:
+        ruta (str): Ruta del archivo .txt a leer.
+        desplazamiento (int): Número de posiciones que se desplazará cada carácter.
+        alfabeto (str): Cadena que representa el alfabeto permitido. 
+                        Ejemplo: "abcdefghijklmnñopqrstuvwxyz ,."
+    Raises:
+        FileNotFoundError: Si el archivo no existe en la ruta especificada.
+        UnicodeDecodeError: Si el archivo no se puede decodificar como texto.
+    Salida en consola:
+        - Texto original
+        - Texto cifrado
+        - Tabla de posibles descifrados por fuerza bruta
+    """
+    texto = leer_txt(ruta)
+    
+    print(Style.BRIGHT + f"\nCifrado César del texto:")
+    print(Fore.YELLOW + f"📜 Texto original: '{texto}'")
+    print(Fore.CYAN + f"🔢 Desplazamiento: {desplazamiento}")
+
+    texto_encriptado = cifrar_cesar(texto, alfabeto, desplazamiento)
+
+    print(Fore.GREEN + f"🔐 Texto cifrado: '{texto_encriptado}'\n" + Style.RESET_ALL)
+    ejecutar_descifrar_cesar(texto_encriptado, alfabeto)
