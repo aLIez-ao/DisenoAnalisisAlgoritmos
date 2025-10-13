@@ -10,26 +10,29 @@ Importar este módulo y llamar a las funciones de ejecución pasando los argumen
 """
 
 import random
+from typing import List, Tuple
 from colorama import Fore, Style
 from algoritmos import *
+
 
 # -------------------------------
 # Funciones para ejecutar los algoritmos
 # -------------------------------
 
+
 def ejecutar_par_suma_k(arreglo):
     """
     Busca y ejecuta algoritmos para encontrar un par de números en el arreglo
     que sumen un valor k (calculado aleatoriamente a partir de dos elementos).
-    
+
     Compara dos versiones: la búsqueda estándar y la optimizada.
-    
+
     Args:
         arreglo (list): Lista de enteros donde se buscarán los pares.
-    
+
     Returns:
         None. Imprime en consola los resultados de ambas búsquedas.
-    
+
     Nota:
         - Selecciona aleatoriamente dos índices del arreglo
         - Calcula k como la suma de los elementos en esos índices
@@ -48,15 +51,15 @@ def ejecutar_busqueda_lineal(arreglo, valor):
     """
     Ejecuta la búsqueda lineal de un valor en el arreglo e imprime
     el resultado con información sobre comparaciones realizadas.
-    
+
     Args:
         arreglo (list): Lista de enteros donde se realizará la búsqueda.
         valor (int): El valor a buscar en el arreglo.
-    
+
     Returns:
         None. Imprime en consola el índice encontrado o mensaje de no encontrado,
         junto con el número de comparaciones realizadas.
-    
+
     Output:
         - Mensaje de éxito en verde si se encuentra el valor
         - Mensaje de error en rojo si no se encuentra
@@ -73,17 +76,17 @@ def ejecutar_suma_recursiva(lista):
     """
     Calcula la suma de todos los elementos en una lista utilizando recursión
     e imprime el resultado de forma formateada.
-    
+
     Args:
         lista (list): Lista de números (int o float) a sumar recursivamente.
-    
+
     Returns:
         None. Imprime en consola la lista y el resultado de la suma.
-    
+
     Output:
         - Lista original
         - Resultado de la suma en color verde
-    
+
     Ejemplo:
         ejecutar_suma_recursiva([1, 2, 3, 4, 5])
         # Output: Suma recursiva de la lista [1, 2, 3, 4, 5]:
@@ -97,17 +100,17 @@ def ejecutar_contar_digitos(n):
     """
     Cuenta el número de dígitos en un número entero utilizando recursión
     e imprime el resultado.
-    
+
     Args:
         n (int): Número entero del cual contar los dígitos.
-    
+
     Returns:
         None. Imprime en consola el número y la cantidad de dígitos.
-    
+
     Output:
         - Número analizado
         - Cantidad de dígitos en color verde
-    
+
     Ejemplo:
         ejecutar_contar_digitos(12345)
         # Output: Contar dígitos del número 12345:
@@ -122,21 +125,21 @@ def ejecutar_eliminar_medio(pila):
     """
     Elimina el elemento del medio de una pila e imprime el resultado
     antes y después de la operación.
-    
+
     Args:
         pila (list): Pila (lista) de la cual eliminar el elemento medio.
-    
+
     Returns:
         None. Modifica la pila in-place y imprime el resultado.
-    
+
     Output:
         - Pila original (copia para mostrar)
         - Pila después de eliminar el elemento del medio en color verde
-    
+
     Nota:
         - Si la pila tiene longitud par, se elimina el elemento superior del medio
         - La función modifica la lista original
-    
+
     Ejemplo:
         ejecutar_eliminar_medio([1, 2, 3, 4, 5])
         # Output: Pila original: [1, 2, 3, 4, 5]
@@ -152,22 +155,22 @@ def ejecutar_es_palindromo(cadena):
     """
     Verifica si una cadena de texto es un palíndromo e imprime el resultado
     de forma visual con indicadores de éxito o fracaso.
-    
+
     Args:
         cadena (str): Cadena de caracteres a verificar.
-    
+
     Returns:
         None. Imprime en consola si la cadena es o no un palíndromo.
-    
+
     Output:
         - Mensaje en verde (✅) si es palíndromo
         - Mensaje en rojo (❌) si no es palíndromo
-    
+
     Ejemplo:
         ejecutar_es_palindromo("anilina")
         # Output: Verificar si la cadena 'anilina' es un palíndromo:
         #         ✅ Es un palíndromo.
-        
+
         ejecutar_es_palindromo("hola")
         # Output: Verificar si la cadena 'hola' es un palíndromo:
         #         ❌ No es un palíndromo.
@@ -175,23 +178,67 @@ def ejecutar_es_palindromo(cadena):
     print(Style.BRIGHT + f"\nVerificar si la cadena '{cadena}' es un palíndromo:")
     if es_palindromo(cadena): print(Fore.GREEN + "✅ Es un palíndromo.\n")
     else: print(Fore.RED + "❌ No es un palíndromo.\n")
-    
-    
+
+
 def ejecutar_maximo_producto(arreglo):
     """
     Prueba la función encontrar_maximo_producto con estilo colorido en consola.
-    
+
     Args:
         arreglo: Lista de enteros a procesar
     """
     num1, num2, producto_maximo = encontrar_maximo_producto(arreglo)
-    
+
     print(Style.BRIGHT + f"\n{'='*60}")
     print(f"Búsqueda del máximo producto de dos números:")
     print(f"{'='*60}")
     print(f"Arreglo: {arreglo}")
-    
+
     print(Style.BRIGHT + Fore.CYAN + f"\n📊 Resultado:")
     print(Fore.GREEN + f"✅ Los dos números con producto máximo: {num1} × {num2}")
     print(Fore.YELLOW + f"🎯 Producto máximo: {producto_maximo}\n")
     print(f"{'='*60}\n")
+
+
+def ejecutar_cifrar_cesar(texto: str, desplazamiento: int, alfabeto: str):
+    """
+    Ejecuta el cifrado César y muestra el resultado en consola con estilo visual.
+
+    Args:
+        texto (str): Texto a cifrar.
+        alfabeto (str): Cadena de caracteres permitidos en el cifrado.
+        desplazamiento (int): Número de posiciones para el cifrado.
+
+    Returns:
+        None. Imprime en consola el resultado del cifrado.
+
+    Output:
+        - Mensaje en amarillo mostrando el texto original
+        - Mensaje en cian mostrando el desplazamiento
+        - Mensaje en verde mostrando el texto cifrado
+    """
+    print(Style.BRIGHT + f"\nCifrado César del texto:")
+    print(Fore.YELLOW + f"📜 Texto original: '{texto}'")
+    print(Fore.CYAN + f"🔢 Desplazamiento: {desplazamiento}")
+
+    texto_cifrado = cifrar_cesar(texto, alfabeto, desplazamiento)
+
+    print(Fore.GREEN + f"🔐 Texto cifrado: '{texto_cifrado}'\n" + Style.RESET_ALL)
+
+
+def ejecutar_descifrar_cesar(texto_encriptado: str, alfabeto: str):
+    """
+    Ejecuta el descifrado César por fuerza bruta e imprime los resultados
+    con colores, destacando los candidatos más legibles.
+    """
+    print(Style.BRIGHT + f"\nDescifrado por fuerza bruta del texto:")
+    print(Fore.YELLOW + f"🔐 Texto cifrado: '{texto_encriptado}'")
+    print(Style.RESET_ALL)
+
+    resultados = descifrar_cesar_fuerza_bruta(texto_encriptado, alfabeto)
+    print(Fore.CYAN + "Posibles descifrados:\n" + Style.RESET_ALL)
+
+    for desplazamiento, texto in resultados:
+        print(f"{Fore.WHITE}Desplazamiento {desplazamiento:2d}:{Fore.RESET} {texto}")
+
+    print(Fore.MAGENTA + "\n──────────────────────────────────────────────\n" + Style.RESET_ALL)
