@@ -13,9 +13,7 @@ if __name__ == "__main__":
     ruta = lector_txt.leer_txt(r"resources\texto.txt")
     # ruta = r"resources\hola_mundo.txt"
 
-    ESP = "abcdefghijklmnñopqrstuvwxyz ,."
-    ING = "abcdefghijklmnopqrstuvwxyz ,."
-
+    ESP = "abcdefghijklmnñopqrstuvwxyz ,." 
 
 
     # -------------------------------
@@ -37,12 +35,11 @@ if __name__ == "__main__":
         "cifrar_cesar": lambda: ejecutar_cifrar_cesar(ruta, n, ESP),
         "descifrar_cesar": lambda: ejecutar_descifrar_cesar(ruta, ESP),
         "ejecutar_cifrar_cesar_texto": lambda: ejecutar_cifrar_decifrar_cesar(ruta, 3, ESP),
-
     }
 
 
     # -------------------------------
     # Ejecutar algoritmo elegido
     # -------------------------------
-    algoritmo_ejecutar = "descifrar_cesar"
+    algoritmo_ejecutar = "maximo_producto"
     funciones[algoritmo_ejecutar]()
