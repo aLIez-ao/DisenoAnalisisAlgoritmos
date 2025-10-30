@@ -20,18 +20,19 @@ def leer_txt(ruta: str) -> str:
         str: Contenido del archivo.
     Raises:
         FileNotFoundError: Si el archivo no existe.
-        UnicodeDecodeError: Si el archivo no es texto legible.
+        RuntimeError: Si el archivo no se puede decodificar (no es UTF-8).
     """
     try:
-        with open(ruta, "r", encoding="utf-8") as f:
-            contenido = f.read()
+        with open(ruta, "r", encoding="utf-8") as f: contenido = f.read()
         return contenido
-    except FileNotFoundError:
-        raise FileNotFoundError(f"No se encontró el archivo: {ruta}")
-    except UnicodeDecodeError:
-        raise UnicodeDecodeError(f"No se pudo decodificar el archivo: {ruta}")
-
-
+    
+    except FileNotFoundError as e: 
+        raise FileNotFoundError(f"No se encontró el archivo: {ruta}") from e
+    
+    except UnicodeDecodeError as e: 
+        raise RuntimeError(f"No se pudo decodificar el archivo (posiblemente no es UTF-8): {ruta}") from e
+    
+    
 def seleccionar_txt() -> str:
     """
     Abre un explorador de archivos para seleccionar un archivo .txt.
