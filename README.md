@@ -4,7 +4,7 @@ Este proyecto contiene implementaciones de varios algoritmos clásicos en Python
 
 ---
 
-## 📁 Estructura del proyecto
+## Estructura del proyecto
 
 ```plaintext
 src/
@@ -20,9 +20,7 @@ requirements.txt              # Dependencias del proyecto
 
 ````
 
----
-
-## 🛠 Funcionalidades principales
+## Funcionalidades principales
 
 ### 1. Suma de dígitos
 
@@ -44,9 +42,7 @@ requirements.txt              # Dependencias del proyecto
 - Pares de números para MCD.
 - Arreglos, listas, pilas y colas generadas aleatoriamente para pruebas de algoritmos.
 
----
-
-## ⚡ Cómo ejecutar
+## Cómo ejecutar
 
 1. **Clonar el repositorio**
 
@@ -89,9 +85,7 @@ python src/main.py
 "ordenamiento_quicksort"
 ```
 
----
-
-## 📦 Dependencias
+## Dependencias
 
 Archivo `requirements.txt`:
 
@@ -105,29 +99,11 @@ paquete==0.2
 * `numpy` → Para operaciones con arreglos.
 * `paquete` → Dependencia personalizada (si aplica).
 
----
-
-## 🔧 Notas
+## Notas
 
 * El entorno virtual `.venv` **se comparte entre ramas**, pero cada rama puede tener su propio `requirements.txt`.
 * Para actualizar las dependencias del entorno en una rama:
 
 ```bash
 pip freeze > requirements.txt
-```
-
-* Los números grandes generados aleatoriamente suelen ser **coprimos**, por eso el MCD puede resultar `1`.
-
----
-
-## 📝 Autor
-
-Ardan Olvera
-Proyecto educativo de práctica en **Diseño y Análisis de Algoritmos**.
-
-```---
-
-Si quieres, puedo hacer una **versión más corta y minimalista**, lista para subir a GitHub sin tanta explicación, ideal como primer README para un repositorio público.  
-
-¿Quieres que haga esa versión corta también?
 ```
