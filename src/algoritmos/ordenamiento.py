@@ -9,7 +9,7 @@ las versiones iterativas in-place).
 """
 import random
 
-def ordenamiento_mergesort(arreglo):
+def ordenamiento_mezcla(arreglo):
     """
     Implementación del algoritmo de ordenamiento por mezcla (Merge Sort).
 
@@ -23,8 +23,8 @@ def ordenamiento_mergesort(arreglo):
     if len(arreglo) <= 1: return arreglo
 
     mid = len(arreglo) // 2
-    izquierda = ordenamiento_mergesort(arreglo[:mid])
-    derecha = ordenamiento_mergesort(arreglo[mid:])
+    izquierda = ordenamiento_mezcla(arreglo[:mid])
+    derecha = ordenamiento_mezcla(arreglo[mid:])
 
     # Merge de las dos listas ordenadas
     resultado = []
@@ -44,7 +44,7 @@ def ordenamiento_mergesort(arreglo):
     return resultado
 
 
-def ordenamiento_mergesort_iterativo(arreglo):
+def ordenamiento_mezcla_iterativo(arreglo):
     """
     Implementación iterativa (no recursiva) de Merge Sort.
 

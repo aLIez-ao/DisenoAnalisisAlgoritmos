@@ -1,9 +1,21 @@
-# src/lib/__init__.py
-
 # --- Importaciones de módulos ---
-from . import lector_txt
+from .ejecutar_iterativos import (
+    ejecutar_suma_digitos_iterativo,
+    ejecutar_mcd_iterativo,
+)
 
-# --- Importaciones de funciones específicas ---
+from .ejecutar_recursivos import (
+    ejecutar_suma_digitos_recursivo,
+    ejecutar_mcd_recursivo,
+)
+
+from .ejecutar_ordenamiento import (
+    ejecutar_mezcla,
+    ejecutar_mezcla_iterativo,
+    ejecutar_quicksort,
+    ejecutar_quicksort_iterativo,
+)
+
 from .generador_datos import (
     generar_arreglo,
     generar_lista,
@@ -15,44 +27,23 @@ from .generador_datos import (
     generar_arreglo_parcialmente_ordenado,
 )
 
-from .ejecutar_funcion_fuerza_bruta import (
-    ejecutar_maximo_producto,
-    ejecutar_cifrar_cesar,
-    ejecutar_descifrar_cesar,
-    ejecutar_cifrar_decifrar_cesar,
-)
-
-
-from .ejecutar_funcion_optimizacion import (
-    ejecutar_par_suma_k,
-    ejecutar_busqueda_lineal,
-    ejecutar_problema_mochila,
-    ejecutar_agente_viajero,
-    ejecutar_producto_maximo_visual,
-)
-
-
-from .ejecutar_funcion_ordenamiento import (
-    ejecutar_mergesort,
-    ejecutar_quicksort,
-)
-
-
-from .ejecutar_funcion_recursiva import (
-    ejecutar_suma_recursiva,
-    ejecutar_contar_digitos,
-    ejecutar_eliminar_medio,
-    ejecutar_es_palindromo,
-)
-
-
-# --- Lista de control para "from lib import *" ---
-# Esto le dice a main.py qué nombres importar.
+# --- Lista de control para "from algoritmos import *" ---
 __all__ = [
-    # Módulos
-    "lector_txt",
-
-    # Funciones de generador_datos
+    # importaciones de iterativos
+    "ejecutar_suma_digitos_iterativo",
+    "ejecutar_mcd_iterativo",
+    
+    # importaciones de recursivos
+    "ejecutar_suma_digitos_recursivo",
+    "ejecutar_mcd_recursivo",
+    
+    # importaciones de ordenamiento
+    "ejecutar_mezcla",
+    "ejecutar_mezcla_iterativo",
+    "ejecutar_quicksort",
+    "ejecutar_quicksort_iterativo",
+    
+    # importaciones de generador_datos
     "generar_arreglo",
     "generar_lista",
     "generar_pila",
@@ -61,28 +52,4 @@ __all__ = [
     "generar_arreglo_con_duplicados",
     "generar_arreglo_rango_restringido",
     "generar_arreglo_parcialmente_ordenado",
-
-    # Funciones de ordenamiento
-    "ejecutar_mergesort",
-    "ejecutar_quicksort",
-
-    # Funciones de optimización
-    "ejecutar_par_suma_k",
-    "ejecutar_busqueda_lineal",
-    "ejecutar_problema_mochila",
-    "ejecutar_problema_mochila",
-    'ejecutar_agente_viajero',
-    'ejecutar_producto_maximo_visual',
-
-    # Funciones recursivas
-    "ejecutar_suma_recursiva",
-    "ejecutar_contar_digitos",
-    "ejecutar_eliminar_medio",
-    "ejecutar_es_palindromo",
-
-    # Funciones de fuerza bruta / cifrado
-    "ejecutar_maximo_producto",
-    "ejecutar_cifrar_cesar",
-    "ejecutar_descifrar_cesar",
-    "ejecutar_cifrar_decifrar_cesar",
 ]
