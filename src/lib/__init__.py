@@ -18,7 +18,7 @@ from .generador_datos import (
     generar_arreglo_parcialmente_ordenado,
 )
 
-from .ejecutar_funcion_fuerza_bruta import (
+from .run_funcion_fuerza_bruta import (
     run_maximo_producto,
     run_cifrar_cesar,
     run_descifrar_cesar,
@@ -26,7 +26,7 @@ from .ejecutar_funcion_fuerza_bruta import (
 )
 
 
-from .ejecutar_funcion_optimizacion import (
+from .run_funcion_optimizacion import (
     run_par_suma_k,
     run_busqueda_lineal,
     run_problema_mochila,
@@ -35,13 +35,13 @@ from .ejecutar_funcion_optimizacion import (
 )
 
 
-from .ejecutar_funcion_ordenamiento import (
+from .run_funcion_ordenamiento import (
     run_mergesort,
     run_quicksort,
 )
 
 
-from .ejecutar_funcion_recursiva import (
+from .run_funcion_recursiva import (
     run_suma_recursiva,
     run_contar_digitos,
     run_eliminar_medio,

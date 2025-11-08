@@ -1,5 +1,4 @@
 import random
-from pathlib import Path
 from algoritmos import matriz_distancias
 from lib import *
 
