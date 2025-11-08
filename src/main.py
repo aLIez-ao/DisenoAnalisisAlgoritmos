@@ -1,63 +1,70 @@
 import random
+from pathlib import Path
+from algoritmos import matriz_distancias
 from lib import *
 
-
 if __name__ == "__main__":
+    
+    # -------------------------------
+    # Generar datos de prueba
+    # -------------------------------
 
-    n = random.randint(1, 100)
-    arreglo = generar_arreglo(5)
-    lista = generar_lista(n)
-    pila = generar_pila(n)
-    texto = "anita lava la tina"
-    ruta = lector_txt.leer_txt(r"resources\texto.txt")
-    # ruta = r"resources\hola_mundo.txt"
+    # Estructuras aleatorias - generadas dinámicamente
+    n = random.randint(1, 1000)
+    arreglo = generar_arreglo(1000, -100, 100)
+    lista = generar_lista(random.randint(50, 150), -100, 100)
+    pila = generar_pila(random.randint(20, 100), 0, 1000)
+    cola = generar_cola(random.randint(30, 120), -500, 500)
 
+    # Datos individuales
+    palindromo = "anita lava la tina"
     ESP = "abcdefghijklmnñopqrstuvwxyz ,."
+    ruta = "resources/texto.txt"
 
-    items = ["Laptop", "Libro", "Botella de Agua", "Cámara", "Snack", "Tablet"]
-    valores_items = [500, 150, 80, 300, 60, 400]
-    pesos_items = [3.5, 1.3, 1, 2.5, 0.5, 2]
-    capacidad_mochila = 10
+    # Problema de la mochila
+    items = [f"Item {i+1}" for i in range(10)]
+    len_items = len(items)
+    valores = generar_arreglo(len_items, 50, 500)
+    pesos = generar_arreglo(len_items, 0, 10, True)
+    mochila = n / 2
 
-    nombres_ciudades = ["Ciudad A", "Ciudad B", "Ciudad C", "Ciudad D"]
-    matriz_distancias_int = [
-        [0, 10, 15, 20],
-        [10, 0, 35, 25],
-        [15, 35, 0, 30],
-        [20, 25, 30, 0],
-    ]
-    matriz_distancias = [[float(x) for x in fila] for fila in matriz_distancias_int]
+    # Problema del agente viajero
+    ciudades = [f"Ciudad {i+1}" for i in range(5)]
+    len_cuidades = len(ciudades)
+    matriz = [[0 if i == j else random.randint(10, 50) for j in range(len_cuidades)] for i in range(len_cuidades)]
+    distancias = matriz_distancias(matriz)
 
+    
     # -------------------------------
     # Diccionario de funciones
     # -------------------------------
     funciones = {
         # Algoritmos optimizados
-        "par_suma_k": lambda: ejecutar_par_suma_k(arreglo),
-        "busqueda_lineal": lambda: ejecutar_busqueda_lineal(arreglo, random.choice(arreglo)),
-        "problema_mochila": lambda: ejecutar_problema_mochila(items, valores_items, pesos_items, capacidad_mochila),
-        "problema_agente_viajero": lambda: ejecutar_agente_viajero(nombres_ciudades, matriz_distancias),
-        "producto_maximo_visual": lambda: ejecutar_producto_maximo_visual(arreglo, 0, len(arreglo)-1),
+        "par_suma_k": lambda: run_par_suma_k(arreglo),
+        "busqueda_lineal": lambda: run_busqueda_lineal(arreglo, random.choice(arreglo)),
+        "mochila": lambda: run_problema_mochila(items, valores, pesos, mochila),
+        "viajero": lambda: run_agente_viajero(ciudades, distancias),
+        "producto_maximo": lambda: run_producto_maximo_visual(arreglo, 0, len(arreglo)-1),
         
         # Algoritmos recursivos
-        "suma_recursiva": lambda: ejecutar_suma_recursiva(lista),
-        "contar_digitos": lambda: ejecutar_contar_digitos(n),
-        "eliminar_medio": lambda: ejecutar_eliminar_medio(pila),
-        "es_palindromo": lambda: ejecutar_es_palindromo(texto),
+        "suma": lambda: run_suma_recursiva(lista),
+        "contar_digitos": lambda: run_contar_digitos(n),
+        "eliminar_medio": lambda: run_eliminar_medio(pila),
+        "palindromo": lambda: run_es_palindromo(palindromo),
         
         # Algoritmos de fuerza bruta
-        "maximo_producto": lambda: ejecutar_maximo_producto(arreglo),
-        "cifrar_cesar": lambda: ejecutar_cifrar_cesar(ruta, n, ESP),
-        "descifrar_cesar": lambda: ejecutar_descifrar_cesar(ruta, ESP),
-        "ejecutar_cifrar_cesar_texto": lambda: ejecutar_cifrar_decifrar_cesar(ruta, 3, ESP),
+        "maximo_producto": lambda: run_maximo_producto(arreglo),
+        "cifrar_cesar": lambda: run_cifrar_cesar(ruta, n, ESP),
+        "descifrar_cesar": lambda: run_descifrar_cesar(ruta, ESP),
+        "descifrar_cesar_tex": lambda: run_cifrar_decifrar_cesar(ruta, 3, ESP),
         
         # Algoritmos de ordenamiento
-        "ordenamiento_mergesort": lambda: ejecutar_mergesort(arreglo),
-        "ordenamiento_quicksort": lambda: ejecutar_quicksort(arreglo),
+        "mergesort": lambda: run_mergesort(arreglo),
+        "quicksort": lambda: run_quicksort(arreglo),
     }
 
     # -------------------------------
     # Ejecutar algoritmo elegido
     # -------------------------------
-    algoritmo_ejecutar = "producto_maximo_visual"
+    algoritmo_ejecutar = "mochila"
     funciones[algoritmo_ejecutar]()

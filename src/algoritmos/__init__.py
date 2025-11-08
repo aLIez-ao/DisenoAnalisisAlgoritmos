@@ -7,6 +7,7 @@ from .algoritmos_optimizacion import (
     problema_mochila,
     problema_agente_viajero,
     producto_maximo,
+    matriz_distancias,
 )
 
 from .algoritmos_recursivos import (
@@ -30,6 +31,10 @@ from .algoritmos_ordenamiento import (
     ordenamiento_quicksort_iterativo,
 )
 
+from .algoritmos_dinamicos import (
+    resolver_laberinto,
+)
+
 
 # --- Lista de control __all__ ---
 
@@ -41,6 +46,7 @@ __all__ = [
     'problema_mochila',
     'problema_agente_viajero',
     'producto_maximo',
+    "matriz_distancias",
 
     # De algoritmos_recursivos
     'suma_recursiva',
@@ -59,4 +65,7 @@ __all__ = [
     'ordenamiento_mergesort_iterativo',
     'ordenamiento_quicksort',
     'ordenamiento_quicksort_iterativo',
+    
+    # De algoritmos_dinamicos
+    'resolver_laberinto',
 ]

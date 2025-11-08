@@ -11,7 +11,7 @@ from .lector_txt import leer_txt
 # -------------------------------
 
 
-def ejecutar_maximo_producto(arreglo):
+def run_maximo_producto(arreglo):
     """
     Prueba la función encontrar_maximo_producto con estilo colorido en consola.
     """
@@ -33,7 +33,7 @@ def ejecutar_maximo_producto(arreglo):
     print(f"{'='*60}\n")
 
 
-def ejecutar_cifrar_cesar(texto: str, desplazamiento: int, alfabeto: str):
+def run_cifrar_cesar(texto: str, desplazamiento: int, alfabeto: str):
     """
     Ejecuta el cifrado César y muestra el resultado en consola con estilo visual.
 
@@ -59,7 +59,7 @@ def ejecutar_cifrar_cesar(texto: str, desplazamiento: int, alfabeto: str):
     print(Fore.GREEN + f"🔐 Texto cifrado: '{texto_cifrado}'\n" + Style.RESET_ALL)
 
 
-def ejecutar_descifrar_cesar(texto_encriptado: str, alfabeto: str):
+def run_descifrar_cesar(texto_encriptado: str, alfabeto: str):
     """
     Ejecuta el descifrado César por fuerza bruta e imprime los resultados
     con colores, destacando los candidatos más legibles.
@@ -77,7 +77,7 @@ def ejecutar_descifrar_cesar(texto_encriptado: str, alfabeto: str):
     print(Fore.MAGENTA + "\n──────────────────────────────────────────────\n" + Style.RESET_ALL)
 
 
-def ejecutar_cifrar_decifrar_cesar(ruta: str, desplazamiento: int, alfabeto: str):
+def run_cifrar_decifrar_cesar(ruta: str, desplazamiento: int, alfabeto: str):
     """
     Ejecuta el cifrado César sobre el contenido de un archivo .txt y luego
     realiza un descifrado por fuerza bruta mostrando todos los posibles
@@ -110,4 +110,4 @@ def ejecutar_cifrar_decifrar_cesar(ruta: str, desplazamiento: int, alfabeto: str
     texto_encriptado = cifrar_cesar(texto, alfabeto, desplazamiento)
 
     print(Fore.GREEN + f"🔐 Texto cifrado: '{texto_encriptado}'\n" + Style.RESET_ALL)
-    ejecutar_descifrar_cesar(texto_encriptado, alfabeto)
+    run_descifrar_cesar(texto_encriptado, alfabeto)

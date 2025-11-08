@@ -11,7 +11,7 @@ from .lector_txt import leer_txt
 # -------------------------------
 
 
-def ejecutar_suma_recursiva(lista):
+def run_suma_recursiva(lista):
     """
     Calcula la suma de todos los elementos en una lista utilizando recursión
     e imprime el resultado de forma formateada.
@@ -35,7 +35,7 @@ def ejecutar_suma_recursiva(lista):
     print(Fore.GREEN + f"Resultado: {suma_recursiva(lista)}\n")
 
 
-def ejecutar_contar_digitos(n):
+def run_contar_digitos(n):
     """
     Cuenta el número de dígitos en un número entero utilizando recursión
     e imprime el resultado.
@@ -60,7 +60,7 @@ def ejecutar_contar_digitos(n):
     print(Fore.GREEN + f"Resultado: {digitos}\n")
 
 
-def ejecutar_eliminar_medio(pila):
+def run_eliminar_medio(pila):
     """
     Elimina el elemento del medio de una pila e imprime el resultado
     antes y después de la operación.
@@ -90,7 +90,7 @@ def ejecutar_eliminar_medio(pila):
     print(Fore.GREEN + f"Pila después de eliminar el medio: {pila_copia}\n")
 
 
-def ejecutar_es_palindromo(cadena):
+def run_es_palindromo(cadena):
     """
     Verifica si una cadena de texto es un palíndromo e imprime el resultado
     de forma visual con indicadores de éxito o fracaso.

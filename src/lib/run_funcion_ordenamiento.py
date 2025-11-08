@@ -8,7 +8,7 @@ from lib import *
 # -------------------------------
 
 
-def ejecutar_mergesort(arreglo: list):
+def run_mergesort(arreglo: list):
     """
     Ejecuta el ordenamiento MergeSort y muestra los resultados en consola
     con colores para mayor claridad.
@@ -25,7 +25,7 @@ def ejecutar_mergesort(arreglo: list):
     print(Fore.MAGENTA + "──────────────────────────────────────────────────\n" + Style.RESET_ALL)
 
 
-def ejecutar_quicksort(arreglo: list):
+def run_quicksort(arreglo: list):
     """
     Ejecuta el ordenamiento QuickSort y muestra los resultados en consola
     con colores para mayor claridad.

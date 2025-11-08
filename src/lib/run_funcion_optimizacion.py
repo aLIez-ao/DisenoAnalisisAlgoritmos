@@ -6,7 +6,7 @@ from lib import *
 from .lector_txt import leer_txt
 
 
-def ejecutar_par_suma_k(arreglo):
+def run_par_suma_k(arreglo):
     """
     Busca y ejecuta algoritmos para encontrar un par de números en el arreglo
     que sumen un valor k (calculado aleatoriamente a partir de dos elementos).
@@ -33,7 +33,7 @@ def ejecutar_par_suma_k(arreglo):
     existe_par_suma_k_optimizado(arreglo, k)
 
 
-def ejecutar_busqueda_lineal(arreglo, valor):
+def run_busqueda_lineal(arreglo, valor):
     """
     Ejecuta la búsqueda lineal de un valor en el arreglo e imprime
     el resultado con información sobre comparaciones realizadas.
@@ -58,7 +58,7 @@ def ejecutar_busqueda_lineal(arreglo, valor):
     print(f"Número de comparaciones realizadas: {comparaciones}\n")
 
 
-def ejecutar_problema_mochila(nombres, valores, pesos, capacidad):
+def run_problema_mochila(nombres, valores, pesos, capacidad):
     """
     Ejecuta el algoritmo del Problema de la Mochila 0/1 y muestra los resultados en consola.
 
@@ -107,7 +107,7 @@ def ejecutar_problema_mochila(nombres, valores, pesos, capacidad):
     print(Fore.MAGENTA + "─" * 45 + "\n")
     
 
-def ejecutar_agente_viajero(nombres_ciudades: list[str], matriz_distancias: list[list[float]]):
+def run_agente_viajero(nombres_ciudades: list[str], matriz_distancias: list[list[float]]):
     """
     Ejecuta el Problema del Agente Viajero (TSP) y muestra los resultados en consola.
 
@@ -145,7 +145,7 @@ def ejecutar_agente_viajero(nombres_ciudades: list[str], matriz_distancias: list
     print(Fore.MAGENTA + "─" * 50 + "\n")
     
     
-def ejecutar_producto_maximo_visual(arreglo: List[int], inicio: int, fin: int) -> float:
+def run_producto_maximo_visual(arreglo: List[int], inicio: int, fin: int) -> float:
     """
         Encuentra el producto máximo de un subarreglo y lo pinta en consola.
         
@@ -166,8 +166,8 @@ def ejecutar_producto_maximo_visual(arreglo: List[int], inicio: int, fin: int) -
 
     print(f"{Fore.YELLOW}Dividiendo subarreglo [{inicio}:{fin}] en [{inicio}:{medio}] y [{medio+1}:{fin}]")
 
-    producto_izquierda = ejecutar_producto_maximo_visual(arreglo, inicio, medio)
-    producto_derecha = ejecutar_producto_maximo_visual(arreglo, medio + 1, fin)
+    producto_izquierda = run_producto_maximo_visual(arreglo, inicio, medio)
+    producto_derecha = run_producto_maximo_visual(arreglo, medio + 1, fin)
     producto_cruzado = producto_maximo_cruzado_visual(arreglo, inicio, medio, fin)
 
     producto_max = max(producto_izquierda, producto_derecha, producto_cruzado)

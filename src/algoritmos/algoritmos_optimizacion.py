@@ -251,3 +251,6 @@ def producto_maximo_cruzado(arreglo: List[int], inicio: int, medio: int, fin: in
     # Producto cruzado
     return producto_max_izquierda * producto_max_derecha
 
+
+def matriz_distancias(matriz):
+    return [[float(x) for x in fila] for fila in matriz]
