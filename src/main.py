@@ -1,6 +1,7 @@
 import random
 from algoritmos import matriz_distancias
-from lib import *
+from runner import *
+from utils import *
 
 if __name__ == "__main__":
     

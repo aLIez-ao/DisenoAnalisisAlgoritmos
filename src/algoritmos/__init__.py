@@ -37,7 +37,6 @@ from .algoritmos_dinamicos import (
 
 
 # --- Lista de control __all__ ---
-
 __all__ = [
     # De algoritmos_optimizacion
     'existe_par_suma_k',

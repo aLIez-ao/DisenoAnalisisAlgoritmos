@@ -1,5 +1,5 @@
 from typing import List, Tuple, Optional, Set, Dict, Any, Union
-from lib import leer_archivo
+from utils import leer_archivo
 
 
 # ============================================================================

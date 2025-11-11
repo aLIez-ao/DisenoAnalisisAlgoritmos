@@ -1,9 +1,6 @@
-import random
-from typing import List, Tuple
 from colorama import Fore, Style
 from algoritmos import *
-from lib import *
-from .lector_txt import leer_txt
+from utils import *
 
 
 # -------------------------------

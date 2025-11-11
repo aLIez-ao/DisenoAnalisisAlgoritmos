@@ -1,6 +1,5 @@
 from colorama import Fore, Style
 from algoritmos import *
-from lib import *
 
 
 # -------------------------------

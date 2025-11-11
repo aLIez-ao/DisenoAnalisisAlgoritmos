@@ -116,7 +116,7 @@ def tarea_tres(a):
 def tarea_cuatro(a):
     n = len(a)                          # T(n) = 1
     total = 0                           # T(n) = 1
-    n = (n * 2) / 2                     # T(n) = 1
+    n = (n * 2) // 2                     # T(n) = 1
     for i in range(n):                  # T(n) = n
         basura = 1                      # T(n) = 1 por iteración -> total T(n) = n
         nada = 0                        # T(n) = 1 por iteración -> total T(n) = n

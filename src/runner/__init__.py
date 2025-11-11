@@ -1,23 +1,6 @@
 # src/lib/__init__.py
 
 # --- Importaciones de módulos ---
-from .lector_txt import (
-    leer_txt,
-    leer_archivo,
-)
-
-# --- Importaciones de funciones específicas ---
-from .generador_datos import (
-    generar_arreglo,
-    generar_lista,
-    generar_pila,
-    generar_cola,
-    generar_arreglo_ordenado,
-    generar_arreglo_con_duplicados,
-    generar_arreglo_rango_restringido,
-    generar_arreglo_parcialmente_ordenado,
-)
-
 from .run_funcion_fuerza_bruta import (
     run_maximo_producto,
     run_cifrar_cesar,
@@ -49,24 +32,9 @@ from .run_funcion_recursiva import (
 )
 
 
-# --- Lista de control para "from lib import *" ---
-# Esto le dice a main.py qué nombres importar.
+# --- Lista de control __all__ ---
 __all__ = [
-    # Módulos
-    "leer_txt",
-    "leer_archivo",
-
-    # Funciones de generador_datos
-    "generar_arreglo",
-    "generar_lista",
-    "generar_pila",
-    "generar_cola",
-    "generar_arreglo_ordenado",
-    "generar_arreglo_con_duplicados",
-    "generar_arreglo_rango_restringido",
-    "generar_arreglo_parcialmente_ordenado",
-
-    # Funciones de ordenamiento
+   # Funciones de ordenamiento
     "run_mergesort",
     "run_quicksort",
 
