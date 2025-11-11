@@ -1,7 +1,7 @@
 # src/lib/__init__.py
 
 # --- Importaciones de módulos ---
-from .run_funcion_fuerza_bruta import (
+from .run_fuerza_bruta import (
     run_maximo_producto,
     run_cifrar_cesar,
     run_descifrar_cesar,
@@ -9,7 +9,7 @@ from .run_funcion_fuerza_bruta import (
 )
 
 
-from .run_funcion_optimizacion import (
+from .run_optimizacion import (
     run_par_suma_k,
     run_busqueda_lineal,
     run_problema_mochila,
@@ -18,13 +18,13 @@ from .run_funcion_optimizacion import (
 )
 
 
-from .run_funcion_ordenamiento import (
+from .run_ordenamiento import (
     run_mergesort,
     run_quicksort,
 )
 
 
-from .run_funcion_recursiva import (
+from .run_recursiva import (
     run_suma_recursiva,
     run_contar_digitos,
     run_eliminar_medio,

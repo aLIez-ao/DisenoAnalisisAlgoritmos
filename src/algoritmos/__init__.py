@@ -1,6 +1,6 @@
 # src/algoritmos/__init__.py
 
-from .algoritmos_optimizacion import (
+from .optimizacion import (
     existe_par_suma_k,
     existe_par_suma_k_optimizado,
     busqueda_lineal,
@@ -10,7 +10,7 @@ from .algoritmos_optimizacion import (
     matriz_distancias,
 )
 
-from .algoritmos_recursivos import (
+from .recursivos import (
     suma_recursiva,
     contar_digitos,
     eliminar_medio,
@@ -18,20 +18,20 @@ from .algoritmos_recursivos import (
     fibonacci,
 )
 
-from .algoritmos_fuerza_Bruta import (
+from .fuerza_Bruta import (
     cifrar_cesar,
     descifrar_cesar_fuerza_bruta,
     encontrar_maximo_producto,
 )
 
-from .algoritmos_ordenamiento import (
+from .ordenamiento import (
     ordenamiento_mergesort,
     ordenamiento_mergesort_iterativo,
     ordenamiento_quicksort,
     ordenamiento_quicksort_iterativo,
 )
 
-from .algoritmos_dinamicos import (
+from .dinamicos import (
     resolver_laberinto,
 )
 
