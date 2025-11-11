@@ -1,9 +1,12 @@
 import random
+import sys
 from algoritmos import matriz_distancias
 from runner import *
 from utils import *
 
 if __name__ == "__main__":
+    # Ajustar límite de recursión para laberintos complejos
+    sys.setrecursionlimit(4000)
     
     # -------------------------------
     # Generar datos de prueba

@@ -1,6 +1,3 @@
-
-
-
 def movimiento_valido(laberinto: list, fila: int, columna: int, visitados: set) -> bool:
     """Verifica si una celda es válida para moverse (dentro de límites, no pared, no visitada)."""
     f_total = len(laberinto)
@@ -64,28 +61,3 @@ def resolver_laberinto(laberinto: list, entrada: tuple, salida: tuple) -> list |
     if backtrack(laberinto, entrada, salida, visitados, pila_solucion):
         return pila_solucion
     return None
-
-
-import sys
-from utils import *
-
-sys.setrecursionlimit(4000)
-
-def main():
-    ruta = "datos/laberinto1.txt"
-    resultado = cargar_laberinto(ruta)
-    if not resultado:
-        return
-    
-    laberinto, entrada, salida = resultado
-    ruta_solucion = resolver_laberinto(laberinto, entrada, salida)
-
-    if ruta_solucion:
-        print("Ruta encontrada:")
-        for paso in ruta_solucion:
-            print(paso)
-    else:
-        print("No hay solución.")
-
-if __name__ == "__main__":
-    main()
