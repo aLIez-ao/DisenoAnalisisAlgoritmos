@@ -20,6 +20,7 @@ if __name__ == "__main__":
     palindromo = "anita lava la tina"
     ESP = "abcdefghijklmnñopqrstuvwxyz ,."
     ruta = "resources/texto.txt"
+    laberinto = "resources/entrada.txt"
 
     # Problema de la mochila
     items = [f"Item {i+1}" for i in range(10)]
@@ -31,7 +32,7 @@ if __name__ == "__main__":
     # Problema del agente viajero
     ciudades = [f"Ciudad {i+1}" for i in range(5)]
     len_cuidades = len(ciudades)
-    matriz = [[0 if i == j else random.randint(10, 50) for j in range(len_cuidades)] for i in range(len_cuidades)]
+    matriz = generar_matriz_ciudades(len_cuidades)
     distancias = matriz_distancias(matriz)
 
     
@@ -39,18 +40,8 @@ if __name__ == "__main__":
     # Diccionario de funciones
     # -------------------------------
     funciones = {
-        # Algoritmos optimizados
-        "par_suma_k": lambda: run_par_suma_k(arreglo),
-        "busqueda_lineal": lambda: run_busqueda_lineal(arreglo, random.choice(arreglo)),
-        "mochila": lambda: run_problema_mochila(items, valores, pesos, mochila),
-        "viajero": lambda: run_agente_viajero(ciudades, distancias),
-        "producto_maximo": lambda: run_producto_maximo_visual(arreglo, 0, len(arreglo)-1),
-        
-        # Algoritmos recursivos
-        "suma": lambda: run_suma_recursiva(lista),
-        "contar_digitos": lambda: run_contar_digitos(n),
-        "eliminar_medio": lambda: run_eliminar_medio(pila),
-        "palindromo": lambda: run_es_palindromo(palindromo),
+        #Algoritmos dinámicos
+        "laberinto": lambda: run_resolver_laberinto(laberinto),
         
         # Algoritmos de fuerza bruta
         "maximo_producto": lambda: run_maximo_producto(arreglo),
@@ -58,13 +49,26 @@ if __name__ == "__main__":
         "descifrar_cesar": lambda: run_descifrar_cesar(ruta, ESP),
         "descifrar_cesar_tex": lambda: run_cifrar_decifrar_cesar(ruta, 3, ESP),
         
+        # Algoritmos optimizados
+        "par_suma_k": lambda: run_par_suma_k(arreglo),
+        "busqueda_lineal": lambda: run_busqueda_lineal(arreglo, random.choice(arreglo)),
+        "mochila": lambda: run_problema_mochila(items, valores, pesos, mochila),
+        "viajero": lambda: run_agente_viajero(ciudades, distancias),
+        "producto_maximo": lambda: run_producto_maximo_visual(arreglo, 0, len(arreglo)-1),
+        
         # Algoritmos de ordenamiento
         "mergesort": lambda: run_mergesort(arreglo),
         "quicksort": lambda: run_quicksort(arreglo),
+        
+        # Algoritmos recursivos
+        "suma": lambda: run_suma_recursiva(lista),
+        "contar_digitos": lambda: run_contar_digitos(n),
+        "eliminar_medio": lambda: run_eliminar_medio(pila),
+        "palindromo": lambda: run_es_palindromo(palindromo),
     }
 
     # -------------------------------
     # Ejecutar algoritmo elegido
     # -------------------------------
-    algoritmo_ejecutar = "mochila"
+    algoritmo_ejecutar = "laberinto"
     funciones[algoritmo_ejecutar]()

@@ -208,3 +208,22 @@ def generar_arreglo_parcialmente_ordenado(n, min_val=-100, max_val=100, porcenta
         else: arreglo[i] = random.randint(min_val, max_val)
     
     return arreglo
+
+
+def generar_matriz_ciudades(lengt):
+    """
+    Genera una matriz cuadrada de tamaño lengt x lengt.
+    Los valores en la diagonal principal son 0.
+    Los demás valores son números aleatorios entre 10 y 50.
+
+    Parámetros:
+        lengt (int): número de ciudades (tamaño de la matriz)
+
+    Retorna:
+        list[list[int]]: matriz generada
+    """
+    matriz = [
+        [0 if i == j else random.randint(10, 50) for j in range(lengt)]
+        for i in range(lengt)
+    ]
+    return matriz
