@@ -1,4 +1,9 @@
 # --- Importaciones de módulos ---
+from .dominancia import (
+    dominancia_nn,
+    dominancia_nlogn
+)
+
 from .iterativos import (
     suma_digitos_iterativo,
     mcd_iterativo,
@@ -10,14 +15,18 @@ from .recursivos import (
 )
 
 from .ordenamiento import (
-    ordenamiento_mezcla,
-    ordenamiento_mezcla_iterativo,
-    ordenamiento_quicksort,
-    ordenamiento_quicksort_iterativo,
+    mergesort,
+    mergesort_iterativo,
+    quicksort,
+    quicksort_iterativo,
 )
 
 # --- Lista de control para "from algoritmos import *" ---
 __all__ = [
+    # importaciones de dominancia
+    "dominancia_nn",
+    "dominancia_nlogn",
+    
     # importaciones de iterativos
     "suma_digitos_iterativo",
     "mcd_iterativo",
@@ -27,8 +36,8 @@ __all__ = [
     "mcd_recursivo",
     
     # importaciones de ordenamiento
-    "ordenamiento_mezcla",
-    "ordenamiento_mezcla_iterativo",
-    "ordenamiento_quicksort",
-    "ordenamiento_quicksort_iterativo",
+    "mergesort",
+    "mergesort_iterativo",
+    "quicksort",
+    "quicksort_iterativo",
 ]

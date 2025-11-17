@@ -5,6 +5,7 @@ Proporciona funciones para crear arreglos, listas y pilas con contenido aleatori
 
 import random
 from fractions import Fraction
+from typing import List, Tuple
 
 
 def generar_arreglo(n, min_val=-100, max_val=100, incluir_racionales=False):
@@ -96,6 +97,47 @@ def generar_cola(n, min_val=-100, max_val=100, incluir_racionales=False):
         generar_cola(3, incluir_racionales=True) -> [7/2, 5, 3/8]  # 7/2 es el frente
     """
     return generar_arreglo(n, min_val, max_val, incluir_racionales)
+
+def generar_puntos(
+    n: int,
+    rango_min: int = 0,
+    rango_max: int = 100,
+    tipo: str = "int",
+    semilla: int | None = None,
+) -> List[Tuple[float, float]]:
+    """
+    Genera una lista de N puntos aleatorios en R2.
+
+    Args:
+        n (int): Cantidad de puntos a generar.
+        rango_min (int): Valor mínimo de las coordenadas.
+        rango_max (int): Valor máximo de las coordenadas.
+        tipo (str): 'int' para enteros (ej. 5), 'float' para decimales (ej. 5.23).
+        semilla (int, opcional): Semilla para reproducibilidad. Si es None, es aleatorio real.
+
+    Returns:
+        List[Tuple[float, float]]: Lista de puntos (x, y).
+    """
+
+    # Si damos una semilla, la secuencia de números será siempre la misma.
+    if semilla is not None:
+        random.seed(semilla)
+
+    lista_puntos = []
+
+    for _ in range(n):
+        if tipo == "int":
+            # Generar enteros
+            x = random.randint(rango_min, rango_max)
+            y = random.randint(rango_min, rango_max)
+        else:
+            # Generar flotantes (ej:
+            x = random.uniform(rango_min, rango_max)
+            y = random.uniform(rango_min, rango_max)
+
+        lista_puntos.append((x, y))
+
+    return lista_puntos
 
 
 def generar_arreglo_ordenado(n, min_val=-100, max_val=100, orden="ascendente", incluir_racionales=False):

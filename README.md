@@ -7,18 +7,33 @@ Este proyecto contiene implementaciones de varios algoritmos clásicos en Python
 ## Estructura del proyecto
 
 ```plaintext
-src/
-├─ algoritmos/
-│  ├─ iterativos.py          # Algoritmos iterativos (suma de dígitos, MCD, etc.)
-│  ├─ recursivos.py          # Algoritmos recursivos
-├─ lib/
-│  ├─ ejecutar_iterativos.py # Funciones que ejecutan los algoritmos mostrando resultados
-│  └─ utils.py               # Funciones auxiliares para generar datos (listas, pilas, colas)
-├─ main.py                   # Script principal para ejecutar algoritmos
-.venv/                        # Entorno virtual
-requirements.txt              # Dependencias del proyecto
-
-````
+Algortimos
+│
+└───src
+    │   main.py
+    │
+    ├───algoritmos
+    │       dominancia.py
+    │       iterativos.py
+    │       ordenamiento.py
+    │       recursivos.py
+    │       __init__.py
+    │
+    ├───runner
+    │       run_dominancia.py
+    │       run_iterativos.py
+    │       run_ordenamiento.py
+    │       run_recursivos.py
+    │       __init__.py
+    │
+    ├───tmp
+    │       tmp.py
+    │
+    └───utils
+            generador_datos.py
+            visualizacion.py
+            __init__.py
+```
 
 ## Funcionalidades principales
 
@@ -46,64 +61,65 @@ requirements.txt              # Dependencias del proyecto
 
 1. **Clonar el repositorio**
 
-```bash
-git clone <URL_DEL_REPO>
-cd <NOMBRE_DEL_REPO>
-````
+   ```bash
+   git clone <URL_DEL_REPO>
+   cd <NOMBRE_DEL_REPO>
+   ```
 
 2. **Activar el entorno virtual**
 
-```bash
-# Windows PowerShell
-& .venv\Scripts\Activate.ps1
+   ```bash
+   # Windows PowerShell
+   & .venv\Scripts\Activate.ps1
 
-# Linux/macOS
-source .venv/bin/activate
-```
+   # Linux/macOS
+   source .venv/bin/activate
+   ```
 
 3. **Instalar dependencias**
 
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 4. **Ejecutar el script principal**
 
-```bash
-python src/main.py
-```
+   ```bash
+   python src/main.py
+   ```
 
-* Por defecto, `main.py` ejecuta el algoritmo definido en `algoritmo_ejecutar`.
-* Puedes cambiar `algoritmo_ejecutar` a cualquiera de las funciones disponibles:
+   - Por defecto, `main.py` ejecuta el algoritmo definido en `algoritmo_ejecutar`.
+   - Puedes cambiar `algoritmo_ejecutar` a cualquiera de las funciones disponibles:
 
-```
-"suma_digitos_iterativo"
-"mcd_iterativo"
-"suma_digitos_recursivo"
-"mcd_recursivo"
-"ordenamiento_mergesort"
-"ordenamiento_quicksort"
-```
+   ```python
+   "suma_digitos_iterativo"
+   "mcd_iterativo"
+   "suma_digitos_recursivo"
+   "mcd_recursivo"
+   "ordenamiento_mergesort"
+   "ordenamiento_quicksort"
+   ```
 
 ## Dependencias
 
 Archivo `requirements.txt`:
 
-```
+```text
 colorama==0.4.6
 numpy==2.3.2
 paquete==0.2
 ```
 
-* `colorama` → Para colores en consola y mejor visualización de resultados.
-* `numpy` → Para operaciones con arreglos.
-* `paquete` → Dependencia personalizada (si aplica).
+- `colorama` → Para colores en consola y mejor visualización de resultados.
+- `numpy` → Para operaciones con arreglos.
+- `paquete` → Dependencia personalizada (si aplica).
 
 ## Notas
 
-* El entorno virtual `.venv` **se comparte entre ramas**, pero cada rama puede tener su propio `requirements.txt`.
-* Para actualizar las dependencias del entorno en una rama:
+- El entorno virtual `.venv` **se comparte entre ramas**, pero cada rama puede tener su propio `requirements.txt`.
+- Para actualizar las dependencias del entorno en una rama:
 
-```bash
-pip freeze > requirements.txt
-```
+  ```bash
+  pip freeze > requirements.txt
+  ```
+  

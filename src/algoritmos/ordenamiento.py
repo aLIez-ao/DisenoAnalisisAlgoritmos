@@ -9,7 +9,7 @@ las versiones iterativas in-place).
 """
 import random
 
-def ordenamiento_mezcla(arreglo):
+def mergesort(arreglo):
     """
     Implementación del algoritmo de ordenamiento por mezcla (Merge Sort).
 
@@ -23,8 +23,8 @@ def ordenamiento_mezcla(arreglo):
     if len(arreglo) <= 1: return arreglo
 
     mid = len(arreglo) // 2
-    izquierda = ordenamiento_mezcla(arreglo[:mid])
-    derecha = ordenamiento_mezcla(arreglo[mid:])
+    izquierda = mergesort(arreglo[:mid])
+    derecha = mergesort(arreglo[mid:])
 
     # Merge de las dos listas ordenadas
     resultado = []
@@ -44,7 +44,7 @@ def ordenamiento_mezcla(arreglo):
     return resultado
 
 
-def ordenamiento_mezcla_iterativo(arreglo):
+def mergesort_iterativo(arreglo):
     """
     Implementación iterativa (no recursiva) de Merge Sort.
 
@@ -101,7 +101,7 @@ def ordenamiento_mezcla_iterativo(arreglo):
     return arreglo
 
 
-def ordenamiento_quicksort(arreglo):
+def quicksort(arreglo):
     """
     Implementación del algoritmo de ordenamiento rápido (Quicksort).
 
@@ -123,10 +123,10 @@ def ordenamiento_quicksort(arreglo):
     mayores = [x for x in arreglo if x > pivote]
 
     # Recursión y combinación
-    return ordenamiento_quicksort(menores) + iguales + ordenamiento_quicksort(mayores)
+    return quicksort(menores) + iguales + quicksort(mayores)
     
 
-def ordenamiento_quicksort_iterativo(arreglo):
+def quicksort_iterativo(arreglo):
     """
     Ordenamiento rápido (Quicksort) iterativo.
     
