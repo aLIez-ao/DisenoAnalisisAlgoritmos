@@ -4,7 +4,7 @@ from algoritmos import matriz_distancias
 from runner import *
 from utils import *
 
-if __name__ == "__main__":
+def main():
     # Ajustar límite de recursión para laberintos complejos
     sys.setrecursionlimit(4000)
     
@@ -75,3 +75,6 @@ if __name__ == "__main__":
     # -------------------------------
     algoritmo_ejecutar = "laberinto"
     funciones[algoritmo_ejecutar]()
+
+if __name__ == "__main__":
+    main()
