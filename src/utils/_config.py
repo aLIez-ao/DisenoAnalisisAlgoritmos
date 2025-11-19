@@ -11,9 +11,12 @@ Contenido:
 - set_debug(): función segura para modificar la bandera DEBUG.
 """
 
-# Bandera global para activar el modo debug en todo el paquete
-DEBUG = False
+# ==================== BANDERAS DE ESTADO (Global) =======================
 
+_DEBUG = False
+
+
+# ==================== FUNCIONES DE ACCESO Y UTILIDAD ====================
 
 def set_debug(value: bool) -> None:
     """
@@ -33,5 +36,5 @@ def set_debug(value: bool) -> None:
     - Para modificar el valor global, es preferible llamar a esta función
       en lugar de modificar DEBUG manualmente.
     """
-    global DEBUG
-    DEBUG = value
+    global _DEBUG
+    _DEBUG = value

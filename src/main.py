@@ -31,7 +31,6 @@ def main():
 
     funciones = {
         # Benchmark
-        # TODO: arreglar el metodo
         "benchmark": lambda: run_benchmark(test_sizes),
         
         

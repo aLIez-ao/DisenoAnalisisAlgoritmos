@@ -5,14 +5,14 @@ Proporciona funciones para crear listas con contenido aleatorio.
 
 import random
 from fractions import Fraction
-from ._config import DEBUG
+from ._config import _DEBUG
 
 
 # ====================  Helpers internos ==================================
 
 def _debug(msg: str) -> None:
     """Imprime un mensaje solo si DEBUG está activado."""
-    if DEBUG:
+    if _DEBUG:
         print(f"[data_generator] {msg}")
 
 def set_seed(seed=None) -> None:

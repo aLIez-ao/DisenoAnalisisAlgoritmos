@@ -10,9 +10,9 @@ Este paquete proporciona:
 # =================== Importar configuración interna ========================
 
 # Importamos DEBUG y set_debug desde _config (fuente única de verdad)
-from ._config import DEBUG, set_debug
+from ._config import _DEBUG, set_debug
 
-if DEBUG:
+if _DEBUG:
     print("[utils] Inicializando paquete (modo debug activado)")
 
 
@@ -42,8 +42,8 @@ from .sorting import (
 # =================== API pública del paquete ===============================
 
 __all__ = [
-    # Config
-    "DEBUG",
+    # Utilidades de configuración 
+    "_DEBUG",
     "set_debug",
 
     # Generación de datos

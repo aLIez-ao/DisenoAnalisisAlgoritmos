@@ -5,6 +5,7 @@ from typing import List, Dict, Any
 from concurrent.futures import ThreadPoolExecutor, Future
 from colorama import Fore, Style
 
+from . import log_debug
 from utils import sorting
 from algoritmos.benchmarks import measure_sorting_performance
 
@@ -134,6 +135,7 @@ def run_benchmark(sizes: List[int]):
     """
     Orquestador principal: Configura, ejecuta en hilos, anima y renderiza.
     """
+    log_debug(f"Iniciando benchmark con tamaños: {sizes}")
     
     print(
         f"{Fore.CYAN}{Style.BRIGHT}Iniciando Benchmarks para N={sizes}{Style.RESET_ALL}\n"

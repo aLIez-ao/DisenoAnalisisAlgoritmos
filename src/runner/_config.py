@@ -1,41 +1,45 @@
 """
 _config.py — Configuración interna del paquete runner.
 
-Este módulo contiene variables y funciones de configuración que afectan
-al comportamiento global del paquete. El prefijo '_' indica que es un
-módulo interno y no forma parte de la API pública oficial, aunque las
-configuraciones pueden exponerse desde runner/__init__.py.
-
-Contenido:
-- DEBUG: bandera global para activar/desactivar mensajes de depuración.
-- set_debug(): función segura para modificar la bandera DEBUG.
+Este módulo gestiona el estado global y la inicialización de herramientas
+transversales como Colorama. Se ejecuta automáticamente al importar el paquete.
 """
 
-from colorama import init
+from colorama import init, Fore, Style
 
-# Bandera global para activar el modo debug en todo el paquete
-DEBUG = False
 
-# TODO: crear la variable global
+# ==================== CONFIGURACIÓN DE VARIABLES ================
+
 init(autoreset=True)
+
+
+# ==================== BANDERAS DE ESTADO (Global) =======================
+
+_DEBUG = False
+
+
+# ==================== FUNCIONES DE ACCESO Y UTILIDAD ====================
 
 def set_debug(value: bool) -> None:
     """
-    Establece el valor de DEBUG globalmente.
+    Activa o desactiva el modo de depuración global.
 
-    Parámetros
-    ----------
-    value : bool
-        True para activar la impresión de mensajes de depuración.
-        False para desactivarla.
-
-    Notas
-    -----
-    - Esta función modifica una variable global *solo dentro de este módulo*.
-    - Los módulos que importen la variable DEBUG deben leerla desde aquí
-      usando:  `from ._config import DEBUG`.
-    - Para modificar el valor global, es preferible llamar a esta función
-      en lugar de modificar DEBUG manualmente.
+    Args:
+        value (bool): True para activar logs detallados.
     """
-    global DEBUG
-    DEBUG = value
+    global _DEBUG
+    _DEBUG = value
+    if _DEBUG:
+        print(f"{Style.DIM}[DEBUG] Modo depuración ACTIVADO.{Style.RESET_ALL}")
+
+def is_debug_active() -> bool:
+    """Retorna el estado actual de la bandera DEBUG."""
+    return _DEBUG
+
+def log_debug(message: str) -> None:
+    """
+    Imprime un mensaje solo si el modo DEBUG está activo.
+    Útil para trazar la ejecución sin ensuciar la salida normal.
+    """
+    if _DEBUG:
+      print(f"{Style.DIM}[DEBUG] {message}{Style.RESET_ALL}")
