@@ -17,7 +17,7 @@ def print_results_table(data: Dict[str, Any]):
     sizes = data["sizes"]
     big_o_map = data["big_o"]
 
-    # --- 1. Calcular anchos de columna ---
+    # Calcular anchos de columna
     
     # Ancho de la primera columna (Nombres de algoritmos)
     col_width_alg = len("Algoritmo")
@@ -45,7 +45,7 @@ def print_results_table(data: Dict[str, Any]):
         
         col_widths_sizes[size] = max(header_width, max_data_width)
 
-    # --- 2. Imprimir Encabezado ---
+    # Imprimir Encabezado
     header = f"{'Algoritmo':<{col_width_alg}} | "
     separator = "-" * col_width_alg + "-+-"
 
@@ -61,7 +61,7 @@ def print_results_table(data: Dict[str, Any]):
     print(header)
     print(separator)
 
-    # --- 3. Imprimir Filas de Datos ---
+    # Imprimir Filas de Datos
     for name, _ in algorithms:
         row = f"{name:<{col_width_alg}} | "
         

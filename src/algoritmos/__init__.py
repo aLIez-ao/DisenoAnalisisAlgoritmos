@@ -1,18 +1,37 @@
-# src/algoritmos/__init__.py
+"""
 
-from .sorting_benchmarks import(
-    measure_sorting_times,
-)
+"""
+# TODO: Documentar el paquete
+
+# ================== Activar/Desactivar modo debug ==========================
+
+DEBUG = False
+
+if DEBUG:
+    print("[algoritmos] Inicializando paquete (modo debug activado)")
 
 
-# --- Lista de control __all__ ---
+
+# ================== Evitar errores si los módulos fallan ==================
+# TODO: Completar los modulos
+try:
+    from .benchmarks import (
+        lista,
+        
+    )
+except Exception as e:
+    raise ImportError(f"[algortimos] Error al cargar benchmarks.py: {e}")
+
+
+# ================== Inicialización global: Semilla ====================
+
+# TODO: revisar si es necesario
+
+
+
+# ================== Generación automática de __all__ ==================
+
 __all__ = [
-    # De insertion_sort_analisis
- 
-    # De max_area_triangle
-    
-    # De robot_rutas
-    
-    # De sorting_benchmarks
-    "measure_sorting_times",
+    # Funciones de benchmarks
+    "lista",
 ]

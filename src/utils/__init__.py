@@ -1,19 +1,32 @@
-# src/lib/__init__.py
+"""
+utils: generador de datos y algoritmos de ordenamiento.
 
-# --- Importaciones de funciones específicas ---
+Este paquete proporciona:
+- Funciones para generar listas de prueba
+- Implementaciones clásicas de algoritmos de ordenamiento
+- Un sistema simple de configuración (DEBUG)
+"""
+
+# =================== Importar configuración interna ========================
+
+# Importamos DEBUG y set_debug desde _config (fuente única de verdad)
+from ._config import DEBUG, set_debug
+
+if DEBUG:
+    print("[utils] Inicializando paquete (modo debug activado)")
+
+
+# =================== Importar funciones públicas ===========================
+
 from .data_generator import (
-    generar_arreglo,
-    generar_lista,
-    generar_pila,
-    generar_cola,
-    generar_arreglo_ordenado,
-    generar_arreglo_con_duplicados,
-    generar_arreglo_rango_restringido,
-    generar_arreglo_parcialmente_ordenado,
-    generar_matriz_ciudades,
+    lista,
+    lista_ordenada,
+    lista_duplicados,
+    lista_semiordenada,
+    ciudad_matriz,
 )
 
-from .sort import (
+from .sorting import (
     bubble_sort,
     merge_sort,
     selection_sort,
@@ -25,20 +38,22 @@ from .sort import (
     bogo_sort,
 )
 
-# --- Lista de control __all__ ---
+
+# =================== API pública del paquete ===============================
+
 __all__ = [
-    # Funciones de generador_datos
-    "generar_arreglo",
-    "generar_lista",
-    "generar_pila",
-    "generar_cola",
-    "generar_arreglo_ordenado",
-    "generar_arreglo_con_duplicados",
-    "generar_arreglo_rango_restringido",
-    "generar_arreglo_parcialmente_ordenado",
-    "generar_matriz_ciudades",
-    
-    # Funciones de sort
+    # Config
+    "DEBUG",
+    "set_debug",
+
+    # Generación de datos
+    "lista",
+    "lista_ordenada",
+    "lista_duplicados",
+    "lista_semiordenada",
+    "ciudad_matriz",
+
+    # Algoritmos de ordenamiento
     "bubble_sort",
     "merge_sort",
     "selection_sort",

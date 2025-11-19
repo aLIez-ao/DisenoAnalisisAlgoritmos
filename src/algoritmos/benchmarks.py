@@ -15,7 +15,7 @@ sys.setrecursionlimit(20000)
 
 
 
-# ============== FUNCIÓN 1: MEDIR TIEMPOS ===========================
+# ============== FUNCIÓN : MEDIR TIEMPOS ===========================
 
 def measure_sorting_times(
     algorithms_to_test: List[Tuple[str, Callable]],
