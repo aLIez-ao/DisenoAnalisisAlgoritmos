@@ -1,16 +1,12 @@
 """
-_config.py — Configuración interna del paquete runner.
+_config.py — Configuración interna del paquete algoritmos.
 
-Este módulo gestiona el estado global y la inicialización de herramientas
-transversales como Colorama. Se ejecuta automáticamente al importar el paquete.
+Este módulo gestiona el estado global y la inicialización de herramientas.
+Se ejecuta automáticamente al importar el paquete.
 """
-
-from colorama import init, Fore, Style
-
-
+#TODO: terminarl algoritmos/_config.py
 # ==================== CONFIGURACIÓN DE VARIABLES ================
 
-init(autoreset=True)
 
 
 # ==================== BANDERAS DE ESTADO (Global) =======================
@@ -29,8 +25,6 @@ def set_debug(value: bool) -> None:
     """
     global _DEBUG
     _DEBUG = value
-    if _DEBUG:
-        print(f"{Style.DIM}[DEBUG] Modo depuración ACTIVADO.{Style.RESET_ALL}")
 
 
 def is_debug_active() -> bool:
@@ -44,4 +38,4 @@ def log_debug(message: str) -> None:
     Útil para trazar la ejecución sin ensuciar la salida normal.
     """
     if _DEBUG:
-      print(f"{Style.DIM}[DEBUG] {message}{Style.RESET_ALL}")
+      print(f"[DEBUG] {message}")

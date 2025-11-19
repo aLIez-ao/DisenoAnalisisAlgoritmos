@@ -20,21 +20,10 @@ _DEBUG = False
 
 def set_debug(value: bool) -> None:
     """
-    Establece el valor de DEBUG globalmente.
+    Activa o desactiva el modo de depuración global.
 
-    Parámetros
-    ----------
-    value : bool
-        True para activar la impresión de mensajes de depuración.
-        False para desactivarla.
-
-    Notas
-    -----
-    - Esta función modifica una variable global *solo dentro de este módulo*.
-    - Los módulos que importen la variable DEBUG deben leerla desde aquí
-      usando:  `from ._config import DEBUG`.
-    - Para modificar el valor global, es preferible llamar a esta función
-      en lugar de modificar DEBUG manualmente.
+    Args:
+        value (bool): True para activar logs detallados.
     """
     global _DEBUG
     _DEBUG = value

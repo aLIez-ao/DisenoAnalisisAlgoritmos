@@ -1,37 +1,26 @@
-"""
+""" """
 
-"""
 # TODO: Documentar el paquete
 
-# ================== Activar/Desactivar modo debug ==========================
+# =================== Importar funciones públicas ===========================
 
-DEBUG = False
+# TODO: Completar los modulos
+from ._config import _DEBUG, set_debug, log_debug, is_debug_active
+from .benchmarks import measure_sorting_performance
 
-if DEBUG:
+
+if _DEBUG:
     print("[algoritmos] Inicializando paquete (modo debug activado)")
 
 
-
-# ================== Evitar errores si los módulos fallan ==================
-# TODO: Completar los modulos
-try:
-    from .benchmarks import (
-        measure_sorting_performance,
-        
-    )
-except Exception as e:
-    raise ImportError(f"[algortimos] Error al cargar benchmarks.py: {e}")
-
-
-# ================== Inicialización global: Semilla ====================
-
-# TODO: revisar si es necesario
-
-
-
-# ================== Generación automática de __all__ ==================
+# =================== API pública del paquete ===============================
 
 __all__ = [
+    # Utilidades de configuración
+    "set_debug",
+    "log_debug",
+    "is_debug_active",
+    
     # Funciones de benchmarks
     "measure_sorting_performance",
 ]
