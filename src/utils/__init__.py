@@ -43,6 +43,8 @@ from .sorting import (
     bogo_sort,
 )
 
+from .visualizer import plot_triangle_solution
+
 
 # =================== API pública del paquete ===============================
 
@@ -72,4 +74,7 @@ __all__ = [
     "shell_sort",
     "counting_sort",
     "bogo_sort",
+    
+    # Visualizer
+    'plot_triangle_solution',
 ]

@@ -3,6 +3,7 @@ import os
 from colorama import Fore, Style
 from runner import log_debug
 from utils.io_handlers import *
+from utils.visualizer import *
 from algoritmos.max_area_triangle import *
 
 def run_triangle_challenge(input_file: str = "resources/campo.in", output_file: str = "resources/campo.out"):
@@ -40,9 +41,14 @@ def run_triangle_challenge(input_file: str = "resources/campo.in", output_file: 
         print(f"Tiempo: {Fore.RED}{time_brute:.6f}s{Style.RESET_ALL}")
     else:
         print(f"\n{Fore.YELLOW}Saltando Fuerza Bruta (N muy grande).{Style.RESET_ALL}")
-        best_triangle_brute = best_triangle_opt # Asumimos correcto
+        best_triangle_brute = best_triangle_opt
 
     # Escritura
     log_debug(f"Triángulo ganador: {best_triangle_opt}")
     write_campo_file(output_file, best_triangle_opt)
     print(f"\n{Fore.CYAN}Resultado guardado en {output_file}{Style.RESET_ALL}")
+    
+    
+    print(f"\n{Fore.MAGENTA}Generando gráfico de resultados...{Style.RESET_ALL}")
+    
+    plot_triangle_solution(points, best_triangle_opt)
