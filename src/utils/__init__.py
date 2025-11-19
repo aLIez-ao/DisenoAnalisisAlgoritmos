@@ -26,6 +26,11 @@ from .data_generator import (
     ciudad_matriz,
 )
 
+from .io_handlers import (
+    read_campo_file,
+    write_campo_file,
+)
+
 from .sorting import (
     bubble_sort,
     merge_sort,
@@ -52,6 +57,10 @@ __all__ = [
     "lista_duplicados",
     "lista_semiordenada",
     "ciudad_matriz",
+    
+    # Handler
+    'read_campo_file',
+    'write_campo_file',
 
     # Algoritmos de ordenamiento
     "bubble_sort",
