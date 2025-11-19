@@ -19,7 +19,6 @@ Este repositorio contiene la implementación de un conjunto de herramientas para
       - [Benchmarks de Ordenamiento](#1-benchmarks-de-ordenamiento)
       - [Desafío Geométrico (Triángulo de Área Máxima)](#2-desafío-geométrico-triángulo-de-área-máxima)
 6. [Análisis de Complejidad](#análisis-de-complejidad)
-7. [Autor](#autor)
 
 -----
 
@@ -148,14 +147,9 @@ python -m src.runner.run_challenge_triangle
 
 -----
 
-## Autor
-
-**[Tu Nombre Completo]**
-
-- **Matrícula/ID:** [Tu Matrícula]
 - **Carrera:** Ingeniería en Computación
 - **Materia:** Diseño y Análisis de Algoritmos
-- **Semestre:** [Quinto semestre. 2026-1]
+- **Semestre:** [Quinto semestre. 2026-1
 
 -----
 
