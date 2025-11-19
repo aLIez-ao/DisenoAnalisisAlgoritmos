@@ -10,7 +10,7 @@ from colorama import init, Fore, Style
 
 # ==================== CONFIGURACIÓN DE VARIABLES ================
 
-_SPINNER_CHARS = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+SPINNER_CHARS = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
 init(autoreset=True)
 
 

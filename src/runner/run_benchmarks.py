@@ -1,15 +1,13 @@
-import sys
-import time
-import itertools
 from typing import List, Dict, Any
-from concurrent.futures import ThreadPoolExecutor, Future
+from concurrent.futures import ThreadPoolExecutor
 from colorama import Fore, Style
 
-from . import log_debug
 from utils import sorting
+from . import log_debug, Spinner
 from algoritmos.benchmarks import measure_sorting_performance
 
 # ============================ CONSTANTES ===============================
+
 _COMPLEXITY_MAP = {
     "bubble_sort": "O(n²)",
     "selection_sort": "O(n²)",
@@ -32,8 +30,6 @@ algoritmos = [
     sorting.quick_sort,
     sorting.counting_sort,
 ]
-
-_SPINNER_CHARS = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
 
 _COL_WIDTH = 10
 
@@ -62,21 +58,6 @@ def _pivot_results(raw_results: List[Dict[str, Any]]) -> Dict[str, Dict[int, flo
 
         table_data[method][n] = res["time"]
     return table_data
-
-
-def _run_spinner_animation(future: Future, message: str = "Procesando"):
-    """Muestra una animación de carga mientras el Future no haya terminado."""
-    spinner = itertools.cycle(_SPINNER_CHARS)
-
-    while future.running():
-        sys.stdout.write(
-            f"\r{Fore.YELLOW}{next(spinner)} {Fore.CYAN}{message}... {Style.RESET_ALL}"
-        )
-        sys.stdout.flush()
-        time.sleep(0.1)
-
-    # Limpiar línea al terminar
-    sys.stdout.write("\r" + " " * (len(message) + 10) + "\r")
 
 
 def _print_table_header(sizes: List[int]):
@@ -133,7 +114,17 @@ def _print_algorithm_row(algo_name: str, sizes: List[int], table_data: Dict[str,
 
 def run_benchmark(sizes: List[int]):
     """
-    Orquestador principal: Configura, ejecuta en hilos, anima y renderiza.
+    Ejecuta el benchmark para los algoritmos de ordenamiento.
+
+    Coordina todo el proceso: mide tiempos de ejecución para cada tamaño
+    en `sizes`, muestra un spinner mientras se procesan los datos, convierte
+    los resultados a formato tabular y finalmente imprime la tabla por consola.
+
+    Parámetros
+    ----------
+    sizes : List[int]
+        Tamaños de entrada (N) para los cuales se evaluarán los algoritmos.
+
     """
     log_debug(f"Iniciando benchmark con tamaños: {sizes}")
     
@@ -142,18 +133,14 @@ def run_benchmark(sizes: List[int]):
     )
 
     # Ejecución Asíncrona (Worker)
-    with ThreadPoolExecutor(max_workers=1) as executor:
-        future = executor.submit(measure_sorting_performance, algoritmos, sizes)
-
-        # Animación (Main Thread)
-        _run_spinner_animation(future, message="Ordenando y midiendo")
-
-        # Obtención de resultados
-        try:
-            raw_results = future.result()
-        except Exception as e:
-            print(f"\n{Fore.RED}Error durante el benchmark: {e}")
-            return
+    with Spinner("Ordenando y midiendo tiempos"):
+        with ThreadPoolExecutor(max_workers=1) as executor:
+            future = executor.submit(measure_sorting_performance, algoritmos, sizes)
+            try:
+                raw_results = future.result()
+            except Exception as e:
+                print(f"\n{Fore.RED}Error: {e}")
+                return
 
     # Procesamiento de datos
     pivoted_data = _pivot_results(raw_results)
