@@ -1,81 +1,165 @@
-from utils import *
-from typing import  Dict, Any
+import sys
+import time
+import itertools
+from typing import List, Dict, Any
+from concurrent.futures import ThreadPoolExecutor, Future
+from colorama import Fore, Style
 
-def print_results_table(data: Dict[str, Any]):
+from utils import sorting
+from algoritmos.benchmarks import measure_sorting_performance
+
+# ============================ CONSTANTES ===============================
+_COMPLEXITY_MAP = {
+    "bubble_sort": "O(n²)",
+    "selection_sort": "O(n²)",
+    "insertion_sort": "O(n²)",
+    "shell_sort": "O(n^(3/2))",
+    "merge_sort": "O(n log n)",
+    "quick_sort": "O(n log n)",
+    "heap_sort": "O(n log n)",
+    "counting_sort": "O(n+k)",
+    "bogo_sort": "O((n+1)!)",
+}
+
+algoritmos = [
+    sorting.bubble_sort,
+    sorting.insertion_sort,
+    sorting.selection_sort,
+    sorting.shell_sort,
+    sorting.merge_sort,
+    sorting.heap_sort,
+    sorting.quick_sort,
+    sorting.counting_sort,
+]
+
+_SPINNER_CHARS = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+
+_COL_WIDTH = 10
+
+
+# ======================= FUNCIONES AUXILIARES (Privadas) ===============
+
+def _get_color_for_time(time_val: float) -> str:
+    """Retorna el color de Colorama basado en el umbral de tiempo."""
+    if time_val < 0.01: return Fore.GREEN
+    if time_val < 1.0:  return Fore.YELLOW
+    return Fore.RED
+
+
+def _pivot_results(raw_results: List[Dict[str, Any]]) -> Dict[str, Dict[int, float]]:
     """
-    Imprime los resultados de las mediciones en una tabla formateada.
-
-    En lugar de "Big O en la última fila" (lo cual es ambiguo con
-    columnas de datos), se añade como la última columna, que es
-    la forma estándar y más clara de presentar esta información.
-    
-    Args:
-        data: El diccionario de resultados devuelto por measure_sorting_times.
+    Transforma la lista plana de resultados en un diccionario anidado.
+    Output: { 'quick_sort': { 100: 0.001, 1000: 0.02 }, ... }
     """
-    results = data["results"]
-    algorithms = data["algorithms"]
-    sizes = data["sizes"]
-    big_o_map = data["big_o"]
+    table_data = {}
+    for res in raw_results:
+        method = res["method"]
+        n = res["n"]
 
-    # Calcular anchos de columna
-    
-    # Ancho de la primera columna (Nombres de algoritmos)
-    col_width_alg = len("Algoritmo")
-    for name, _ in algorithms:
-        col_width_alg = max(col_width_alg, len(name))
-    
-    # Ancho de la última columna (Big O)
-    col_width_big_o = len("Big O")
-    for complexity in big_o_map.values():
-        col_width_big_o = max(col_width_big_o, len(complexity))
+        if method not in table_data:
+            table_data[method] = {}
 
-    # Ancho de las columnas de datos (10, 100, 1000...)
-    col_widths_sizes = {}
+        table_data[method][n] = res["time"]
+    return table_data
+
+
+def _run_spinner_animation(future: Future, message: str = "Procesando"):
+    """Muestra una animación de carga mientras el Future no haya terminado."""
+    spinner = itertools.cycle(_SPINNER_CHARS)
+
+    while future.running():
+        sys.stdout.write(
+            f"\r{Fore.YELLOW}{next(spinner)} {Fore.CYAN}{message}... {Style.RESET_ALL}"
+        )
+        sys.stdout.flush()
+        time.sleep(0.1)
+
+    # Limpiar línea al terminar
+    sys.stdout.write("\r" + " " * (len(message) + 10) + "\r")
+
+
+def _print_table_header(sizes: List[int]):
+    """Imprime la cabecera con ancho fijo calculado."""
+    header = f"{'MÉTODO':<20} | {'COMPLEJIDAD':<12}"
+    
     for size in sizes:
-        # El ancho es el máximo entre el título (ej: "10000") y los datos
-        header_width = len(str(size))
-        max_data_width = 0
-        for name, _ in algorithms:
-            result_val = results[name][size]
-            if isinstance(result_val, float):
-                formatted_val = f"{result_val:.6f}s"
-            else:
-                formatted_val = str(result_val) # "N/A" o "Error"
-            max_data_width = max(max_data_width, len(formatted_val))
-        
-        col_widths_sizes[size] = max(header_width, max_data_width)
+        # Alineamos "N=..." usando la constante de ancho fijo
+        col_title = f"N={size}"
+        header += f" | {col_title:<{_COL_WIDTH}}"
+    
+    print(f"{Fore.WHITE}{Style.BRIGHT}{header}")
+    print("-" * len(header))
 
-    # Imprimir Encabezado
-    header = f"{'Algoritmo':<{col_width_alg}} | "
-    separator = "-" * col_width_alg + "-+-"
+
+def _print_algorithm_row(algo_name: str, sizes: List[int], table_data: Dict[str, Dict[int, float]]):
+    """Formatea la fila aplicando padding ANTES del color para alinear perfecto."""
+    complexity = _COMPLEXITY_MAP.get(algo_name, "???")
+    row_str = f"{Fore.BLUE}{algo_name:<20} {Fore.WHITE}| {Fore.MAGENTA}{complexity:<12}"
+
+    # Si el algoritmo fue saltado (ej. bogo)
+    if algo_name not in table_data:
+        for _ in sizes:
+             # Padding manual para el SKIP
+             row_str += f" {Fore.WHITE}| {Fore.BLACK}{'SKIP':<{_COL_WIDTH}}"
+        print(row_str)
+        return
 
     for size in sizes:
-        width = col_widths_sizes[size]
-        header += f"{str(size):>{width}} | "
-        separator += "-" * width + "-+-"
+        time_val = table_data[algo_name].get(size, None)
+        
+        if time_val is None:
+            # Caso específico (si falla un solo dato)
+            val_str_padded = f"{'SKIP':<{_COL_WIDTH}}"
+            colored_val = f"{Fore.BLACK}{val_str_padded}"
+        else:
+            # 1. Formateamos el numero a string
+            time_str = f"{time_val:.5f}s"
+            
+            # 2. Aplicamos PADDING al texto limpio (sin color aún)
+            # Esto garantiza que visualmente ocupe _COL_WIDTH espacios
+            time_str_padded = f"{time_str:<{_COL_WIDTH}}"
+            
+            # 3. Ahora sí aplicamos el color
+            color = _get_color_for_time(time_val)
+            colored_val = f"{color}{time_str_padded}"
+        
+        row_str += f" {Fore.WHITE}| {colored_val}"
+
+    print(row_str)
+
+
+# ========================== FUNCIÓN PRINCIPAL =================================
+
+def run_benchmark(sizes: List[int]):
+    """
+    Orquestador principal: Configura, ejecuta en hilos, anima y renderiza.
+    """
     
-    header += f"{'Big O':<{col_width_big_o}}"
-    separator += "-" * col_width_big_o
+    print(
+        f"{Fore.CYAN}{Style.BRIGHT}Iniciando Benchmarks para N={sizes}{Style.RESET_ALL}\n"
+    )
 
-    print("📊 Tabla de Rendimiento de Algoritmos de Ordenamiento")
-    print(header)
-    print(separator)
+    # Ejecución Asíncrona (Worker)
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        future = executor.submit(measure_sorting_performance, algoritmos, sizes)
 
-    # Imprimir Filas de Datos
-    for name, _ in algorithms:
-        row = f"{name:<{col_width_alg}} | "
-        
-        for size in sizes:
-            width = col_widths_sizes[size]
-            result_val = results[name][size]
-            
-            if isinstance(result_val, float):
-                formatted_val = f"{result_val:.6f}s"
-            else:
-                formatted_val = str(result_val)
-            
-            row += f"{formatted_val:>{width}} | "
-        
-        big_o = big_o_map[name]
-        row += f"{big_o:<{col_width_big_o}}"
-        print(row)
+        # Animación (Main Thread)
+        _run_spinner_animation(future, message="Ordenando y midiendo")
+
+        # Obtención de resultados
+        try:
+            raw_results = future.result()
+        except Exception as e:
+            print(f"\n{Fore.RED}Error durante el benchmark: {e}")
+            return
+
+    # Procesamiento de datos
+    pivoted_data = _pivot_results(raw_results)
+
+    # Renderizado
+    _print_table_header(sizes)
+
+    for algo in algoritmos:
+        _print_algorithm_row(algo.__name__, sizes, pivoted_data)
+
+    print(f"\n{Fore.CYAN}Benchmark finalizado.")

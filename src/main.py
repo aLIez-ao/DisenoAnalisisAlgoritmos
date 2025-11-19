@@ -12,18 +12,19 @@ def main():
         "numero_grande": lambda: random.randint(10**30, 10**40),
         
         # Arreglos para ordenamiento - generados dinámicamente
-        "arreglo_pequeño": lambda: generar_arreglo(10, -50, 50),
-        "arreglo_medio": lambda: generar_arreglo(100, -100, 100),
-        "arreglo_grande": lambda: generar_arreglo(1000, -1000, 1000),
-        "arreglo_muy_grande": lambda: generar_arreglo(10000, -10000, 10000),
+        "arreglo_pequeño": lambda: lista(10, -50, 50),
+        "arreglo_medio": lambda: lista(100, -100, 100),
+        "arreglo_grande": lambda: lista(1000, -1000, 1000),
+        "arreglo_muy_grande": lambda: lista(10000, -10000, 10000),
         
         # Listas, pilas y colas
-        "lista_aleatoria": lambda: generar_lista(random.randint(50, 150), -100, 100),
-        "pila_aleatoria": lambda: generar_pila(random.randint(20, 100), 0, 1000),
-        "cola_aleatoria": lambda: generar_cola(random.randint(30, 120), -500, 500),
+        "lista_aleatoria": lambda: lista(random.randint(50, 150), -100, 100),
+        "pila_aleatoria": lambda: lista(random.randint(20, 100), 0, 1000),
+        "cola_aleatoria": lambda: lista(random.randint(30, 120), -500, 500),
         
     }
     
+    test_sizes = [10, 100, 1000, 10000, 100000]
     
     
     # ================= Diccionario de funciones =======================
@@ -31,7 +32,7 @@ def main():
     funciones = {
         # Benchmark
         # TODO: arreglar el metodo
-        "benchmark": lambda: print_results_table(datos),
+        "benchmark": lambda: run_benchmark(test_sizes),
         
         
     }

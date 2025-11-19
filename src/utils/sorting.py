@@ -57,67 +57,6 @@ def bubble_sort(arr: List[T], *, reverse: bool = False, inplace: bool = False) -
     return arr
 
 
-# ======================= MERGE SORT ====================================
-
-def merge_sort(arr: List[T], *, reverse: bool = False, inplace: bool = False) -> List[T]:
-    """
-    Ordena una lista usando merge sort O(n).
-
-    Args:
-        arr: Lista de elementos comparables.
-        reverse: Si True, ordena de mayor a menor.
-        inplace: Si True, modifica la lista original.
-
-    Returns:
-        Una lista ordenada.
-    """
-    arr = _maybe_copy(arr, inplace)
-    _merge_sort_recursive(arr, 0, len(arr) - 1, reverse)
-    return arr
-
-def _merge_sort_recursive(arr: List[T], left: int, right: int, reverse: bool):
-    if left < right:
-        mid = (left + right) // 2
-
-        _merge_sort_recursive(arr, left, mid, reverse)
-        _merge_sort_recursive(arr, mid + 1, right, reverse)
-        
-        _merge_inplace_simulation(arr, left, mid, right, reverse)
-
-def _merge_inplace_simulation(arr: List[T], left: int, mid: int, right: int, reverse: bool):
-    """Mezcla dos sub-arrays usando una lista temporal solo para esa sección."""
-    n1 = mid - left + 1
-    n2 = right - mid
-
-    # Creamos copias temporales SOLO de la sección necesaria
-    L = arr[left : mid + 1]
-    R = arr[mid + 1 : right + 1]
-
-    i = 0
-    j = 0
-    k = left
-
-    while i < n1 and j < n2:
-        if (L[i] <= R[j]) ^ reverse:
-            arr[k] = L[i]
-            i += 1
-        else:
-            arr[k] = R[j]
-            j += 1
-        k += 1
-
-    # Copiar remanentes
-    while i < n1:
-        arr[k] = L[i]
-        i += 1
-        k += 1
-
-    while j < n2:
-        arr[k] = R[j]
-        j += 1
-        k += 1
-
-
 # ======================= SELECTION SORT ====================================
 
 def selection_sort(arr: List[T], *, reverse: bool = False, inplace: bool = False) -> List[T]:
@@ -174,11 +113,116 @@ def insertion_sort(arr: List[T], *, reverse: bool = False, inplace: bool = False
     return arr
 
 
+# ======================= SHELL SORT ====================================
+
+def shell_sort(arr: List[T], *, reverse: bool = False, inplace: bool = False) -> List[T]:
+    """
+    Ordena una lista usando Shell Sort con la secuencia de Knuth.
+
+    Complejidad típica: O(n^(3/2))
+    Peor caso: O(n^2)
+    Mejor caso: O(n log n)
+
+    Args:
+        arr: Lista de elementos comparables.
+        reverse: Si True, orden descendente.
+        inplace: Si True, modifica la lista original.
+
+    Returns:
+        Lista ordenada.
+    """
+    arr = _maybe_copy(arr, inplace)
+    n = len(arr)
+
+    # Secuencia de Knuth
+    gap = 1
+    while gap < n // 3:
+        gap = 3 * gap + 1
+
+    # Shell sort
+    while gap >= 1:
+        for i in range(gap, n):
+            temp = arr[i]
+            j = i
+
+            # Comparación ajustada con XOR para reverse
+            while j >= gap and ((arr[j - gap] > temp) ^ reverse):
+                arr[j] = arr[j - gap]
+                j -= gap
+
+            arr[j] = temp
+
+        gap //= 3
+
+    return arr
+
+
+# ======================= MERGE SORT ====================================
+
+def merge_sort(arr: List[T], *, reverse: bool = False, inplace: bool = False) -> List[T]:
+    """
+    Ordena una lista usando merge (O(n log n)).
+
+    Args:
+        arr: Lista de elementos comparables.
+        reverse: Si True, ordena de mayor a menor.
+        inplace: Si True, modifica la lista original.
+
+    Returns:
+        Una lista ordenada.
+    """
+    arr = _maybe_copy(arr, inplace)
+    _merge_sort_recursive(arr, 0, len(arr) - 1, reverse)
+    return arr
+
+def _merge_sort_recursive(arr: List[T], left: int, right: int, reverse: bool):
+    if left < right:
+        mid = (left + right) // 2
+
+        _merge_sort_recursive(arr, left, mid, reverse)
+        _merge_sort_recursive(arr, mid + 1, right, reverse)
+        
+        _merge_inplace_simulation(arr, left, mid, right, reverse)
+
+def _merge_inplace_simulation(arr: List[T], left: int, mid: int, right: int, reverse: bool):
+    """Mezcla dos sub-arrays usando una lista temporal solo para esa sección."""
+    n1 = mid - left + 1
+    n2 = right - mid
+
+    # Creamos copias temporales SOLO de la sección necesaria
+    L = arr[left : mid + 1]
+    R = arr[mid + 1 : right + 1]
+
+    i = 0
+    j = 0
+    k = left
+
+    while i < n1 and j < n2:
+        if (L[i] <= R[j]) ^ reverse:
+            arr[k] = L[i]
+            i += 1
+        else:
+            arr[k] = R[j]
+            j += 1
+        k += 1
+
+    # Copiar remanentes
+    while i < n1:
+        arr[k] = L[i]
+        i += 1
+        k += 1
+
+    while j < n2:
+        arr[k] = R[j]
+        j += 1
+        k += 1
+
+
 # ======================= QUICK SORT ====================================
 
 def quick_sort(arr: List[T], *, reverse: bool = False, inplace: bool = False) -> List[T]:
     """
-    Ordena una lista usando quick sort O(n²).
+    Ordena una lista usando quick sort (O(n log n)).
 
     Args:
         arr: Lista de elementos comparables.
@@ -269,51 +313,6 @@ def heap_sort(arr: List[T], *, reverse: bool = False, inplace: bool = False) -> 
     return arr
 
 
-# ======================= SHELL SORT ====================================
-
-def shell_sort(arr: List[T], *, reverse: bool = False, inplace: bool = False) -> List[T]:
-    """
-    Ordena una lista usando Shell Sort.
-
-    Complejidad depende de la secuencia de gaps (Knuth). En general,
-    alrededor de O(n^(3/2)).
-
-    Args:
-        arr: Lista de elementos comparables.
-        reverse: Si True, descendente.
-        inplace: Si True, modifica la lista original.
-
-    Returns:
-        Lista ordenada.
-    """
-    arr = _maybe_copy(arr, inplace)
-    n = len(arr)
-    gap = 1
-    
-    # Calcular el gap inicial 
-    while h < n // 3:
-        h = 3 * h + 1
-    
-    # Ordenar con diferentes gaps
-    while h >= 1:
-        # Insertion sort con gap h
-        for i in range(h, n):
-            temp = arr[i]
-            j = i
-            
-            # Mover elementos que son mayores que temp
-            while j >= h and arr[j - h] > temp:
-                arr[j] = arr[j - h]
-                j -= h
-            
-            arr[j] = temp
-        
-        # Reducir el gap según la secuencia de Knuth
-        h //= 3
-
-    return arr
-
-
 # ======================= COUNTING SORT ====================================
 
 
@@ -360,9 +359,7 @@ def counting_sort(arr: List[int], *, reverse: bool = False) -> List[int]:
     return output[::-1] if reverse else output
 
 
-
 # ======================= BOGO SORT ====================================
-
 
 def bogo_sort(arr: List[T], *, max_iterations: int = 100000, reverse: bool = False) -> List[T]:
     """

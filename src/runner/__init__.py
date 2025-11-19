@@ -1,6 +1,6 @@
 
 from .run_benchmarks import (
-    print_results_table,
+    run_benchmark,
 )
 
 
@@ -8,7 +8,7 @@ from .run_benchmarks import (
 # --- Lista de control __all__ ---
 __all__ = [
     # De run_benchmarks
-    'print_results_table',
+    'run_benchmark',
 
  
 ]

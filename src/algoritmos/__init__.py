@@ -16,7 +16,7 @@ if DEBUG:
 # TODO: Completar los modulos
 try:
     from .benchmarks import (
-        lista,
+        measure_sorting_performance,
         
     )
 except Exception as e:
@@ -33,5 +33,5 @@ except Exception as e:
 
 __all__ = [
     # Funciones de benchmarks
-    "lista",
+    "measure_sorting_performance",
 ]
